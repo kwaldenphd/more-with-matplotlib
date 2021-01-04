@@ -3,7 +3,6 @@
 <a href="http://creativecommons.org/licenses/by-nc/4.0/" rel="license"><img style="border-width: 0;" src="https://i.creativecommons.org/l/by-nc/4.0/88x31.png" alt="Creative Commons License" /></a>
 This tutorial is licensed under a <a href="http://creativecommons.org/licenses/by-nc/4.0/" rel="license">Creative Commons Attribution-NonCommercial 4.0 International License</a>.
 
-
 ## Lab Goals
 
 ## Acknowledgements
@@ -37,21 +36,21 @@ The author consulted the following resources when writing  this tutorial:
 
 # `pandas` and `matplotlib`
 
-Having to load data manually to build a visualization or plot gets cumbersome quickly.
+1. Having to load data manually to build a visualization or plot gets cumbersome quickly.
 
-In many situations, we might want to work with data in a `pandas` `DataFrame` when building a visualization.
+2. In many situations, we might want to work with data in a `pandas` `DataFrame` when building a visualization.
 
-`pandas` includes a `.plot()` attribute that interacts with the `matplotlib` API to generate plots.
+3. `pandas` includes a `.plot()` attribute that interacts with the `matplotlib` API to generate plots.
 
-The `pandas` `.plot()` attribute relies on the `matplotlib` API to generate plots, so our work with `matplotlib` will come in handy when we need to customize plots generated using `.plot()`.
+4. The `pandas` `.plot()` attribute relies on the `matplotlib` API to generate plots, so our work with `matplotlib` will come in handy when we need to customize plots generated using `.plot()`.
 
-And in many cases, the `.plot()` syntax is similar to `matplotlib` `OO` syntax.
+5. And in many cases, the `.plot()` syntax is similar to `matplotlib` `OO` syntax.
 
 ## Plotting in `pandas` Using `.plot()`
 
-Let's go back to the air quality data we were working with previously in `pandas`.
+6. Let's go back to the air quality data we were working with previously in `pandas`.
 
-To load the data as a dataframe:
+7. To load the data as a dataframe:
 ```Python
 # import pandas
 import pandas as pd
@@ -63,7 +62,7 @@ air_quality = pd.read_csv('https://raw.githubusercontent.com/pandas-dev/pandas/m
 air_quality.head()
 ```
 
-We can do a quick visual check of the data by passing the entire data frame to `.plot()`.
+8. We can do a quick visual check of the data by passing the entire data frame to `.plot()`.
 ```Python
 # import matplotlib
 import matplotlib.pyplot as plt
@@ -75,40 +74,40 @@ air_quality.plot()
 plt.show()
 ```
 
-This isn't a particularly meaningful visualization, but it shows us how the default for `.plot()` creates a line for each column with numeric data.
+9. This isn't a particularly meaningful visualization, but it shows us how the default for `.plot()` creates a line for each column with numeric data.
 
-The index is used for the `X` axis, and all numeric columns are plotted on the `Y` axis.
+10. The index is used for the `X` axis, and all numeric columns are plotted on the `Y` axis.
 
-We can also see that `.plot()` pulls tick marks, tick labels, and axis titles from the underlying `dataframe`.
+11. We can also see that `.plot()` pulls tick marks, tick labels, and axis titles from the underlying `dataframe`.
 
-Let's say we only wanted to plot Paris data.
+12. Let's say we only wanted to plot Paris data.
 
-We can select that column in the `dataframe` before calling `.plot()`.
+13. We can select that column in the `dataframe` before calling `.plot()`.
 ```Python
 air_quality["station_paris"].plot()
 ```
 
-We can plot a specific column in the `dataframe` using the `[" "]` selection method.
+14. We can plot a specific column in the `dataframe` using the `[" "]` selection method.
 
-Let's say we want to visually compare NO<sub>2</sub> values measured in London and Paris.
+15. Let's say we want to visually compare NO<sub>2</sub> values measured in London and Paris.
 
-We need to specify what column is going to be used for the `X` axis as well as what column is going to be used for the `Y` axis.
+16. We need to specify what column is going to be used for the `X` axis as well as what column is going to be used for the `Y` axis.
 
-For this example, a scatterplot will be more effective than a lineplot.
+17. For this example, a scatterplot will be more effective than a lineplot.
 
-We can create a scatterplot using `.plot.scatter()`.
+18. We can create a scatterplot using `.plot.scatter()`.
 
 ```Python
 air_quality.plot.scatter(x="station_london", y="station_paris", alpha=0.5)
 ```
 
-This example generates a scatterplot with London data on the `X` axis and Paris data on the `Y` axis.
+19. This example generates a scatterplot with London data on the `X` axis and Paris data on the `Y` axis.
 
-While the default for `.plot()` is a lineplot, there are a number of other methods we can use with `.plot()`.
+20. While the default for `.plot()` is a lineplot, there are a number of other methods we can use with `.plot()`.
 
-Again, you will see some overlap with `matplotlib` syntax.
+21. Again, you will see some overlap with `matplotlib` syntax.
 
-We can use these strings as as method in combination with `.plot()` or we can pass them to `.plot()` as a `kind` parameter.
+22. We can use these strings as as method in combination with `.plot()` or we can pass them to `.plot()` as a `kind` parameter.
 
 Plot Type | Method Syntax | Parameter Syntax
 --- | --- | ---
@@ -125,26 +124,26 @@ Line | `.plot.line()` | `.plot(kind='line')` *this would be redundant since the 
 Pie | `.plot.pie()` | `.plot(kind='pie')`
 Scatter | `.plot.scatter()` | `.plot(kind='scatter')`
 
-In general, it's more effective to use the method syntax to note plot type, rather than treating plot type as a parameter.
+23. In general, it's more effective to use the method syntax to note plot type, rather than treating plot type as a parameter.
 
-Let's create a box plot using our air quality data.
+24. Let's create a box plot using our air quality data.
 ```Python
 air_quality.plot.box()
 ```
 
-We can see each numeric column (each station) has its own box in the default boxplot.
+25. We can see each numeric column (each station) has its own box in the default boxplot.
 
-Let's say we wanted to generate a lineplot with separate subplots for each of the numeric columns.
+26. Let's say we wanted to generate a lineplot with separate subplots for each of the numeric columns.
 
-We can accomplish this by setting the `subplots` parameter to `True`.
+27. We can accomplish this by setting the `subplots` parameter to `True`.
 
 ```Python
 axs = air_quality.plot.area(figsize=(12, 4), subplots=True)
 ```
 
-Let's say we want to further customize this plot.
+28. Let's say we want to further customize this plot.
 
-This is where we start to see more `matplotlib` syntax in play.
+29. This is where we start to see more `matplotlib` syntax in play.
 
 ```Python
 # create figure and axes
@@ -160,15 +159,15 @@ axs.set_ylabel("NO$_2$ concentration")
 fig.savefig("no2_concentrations.png")
 ```
 
-Each plot object created by `pandas` is also a `matplotlib` object.
+30. Each plot object created by `pandas` is also a `matplotlib` object.
 
-Having a deep knowledge of `matplotlib` allows you to customize plots generated using `pandas` `.plot()` function.
+31. Having a deep knowledge of `matplotlib` allows you to customize plots generated using `pandas` `.plot()` function.
 
-That said, there are some parameters you can set as part of `.plot()` without having to have separate `matplotlib` syntax commands.
+32. That said, there are some parameters you can set as part of `.plot()` without having to have separate `matplotlib` syntax commands.
 
-The plot `kind` is one parameter option, as is the `dataframe`, `X` axis data, and `Y` axis data.
+33. The plot `kind` is one parameter option, as is the `dataframe`, `X` axis data, and `Y` axis data.
 
-Other parameters:
+34. Other parameters:
 
 Parameter | Explanation
 --- | ---
@@ -191,15 +190,15 @@ Parameter | Explanation
 `table` | Default is `False`; set to `True` to draw a table from data in the `DataFrame`
 `stacked` | Default is `False` in line and bar plots, `True` in area plot; if `True`, creates stacked plot
 
-For more parameters that can be passed to `.plot()`: [`pandas.DataFrame.plot`](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.plot.html)
+35. For more parameters that can be passed to `.plot()`: [`pandas.DataFrame.plot`](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.plot.html)
 
-Let's walk through a few more examples of using `.plot()` with a `pandas` `DataFrame`.
+36. Let's walk through a few more examples of using `.plot()` with a `pandas` `DataFrame`.
 
-NOTE: The `.plot()` method can be used on `pandas` `Series` and `DataFrame`. These examples focus on `DataFrame`s.
+37. NOTE: The `.plot()` method can be used on `pandas` `Series` and `DataFrame`. These examples focus on `DataFrame`s.
 
 ### Time Series Data and Line Plots
 
-Let's generate some random time series data.
+38. Let's generate some random time series data.
 ```Python
 # import pandas
 import pandas as pd
@@ -220,15 +219,15 @@ ts = ts.cumsum()
 ts.plot()
 ```
 
-In this example, our `Series` index labels are specified using `pd.date_range()`.
+39. In this example, our `Series` index labels are specified using `pd.date_range()`.
 
-These are the `X` axis values.
+40. These are the `X` axis values.
 
-The index values are the 1000 random values generated by `np.random.randn()`.
+41. The index values are the 1000 random values generated by `np.random.randn()`.
 
-We use the cumulative sum `.cumsum` to determine the total value for each unique time in the series.
+42. We use the cumulative sum `.cumsum` to determine the total value for each unique time in the series.
 
-Let's modify this example to use a `DataFrame`.
+43. Let's modify this example to use a `DataFrame`.
 ```Python
 # create new dataframe with random numbers, the original time series index, and four columns
 df = pd.DataFrame(np.random.randn(1000, 4), index=ts.index, columns=list("ABCD"))
@@ -243,16 +242,16 @@ plt.figure()
 df.plot()
 ```
 
-For more on line plots:
+44. For more on line plots:
 - [`pandas`, "Basic plotting"](https://pandas.pydata.org/docs/user_guide/visualization.html#basic-plotting-plot)
 - [`pandas.DataFrame.plot`](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.plot.html)
 - [`pandas.DataFrame.plot.line`](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.plot.line.html)
 
 ### Bar Charts
 
-Let's say we want to create a bar chart with a single line of data from our `df` `DataFrame`.
+45. Let's say we want to create a bar chart with a single line of data from our `df` `DataFrame`.
 
-We can select a specific row using `iloc`.
+46. We can select a specific row using `iloc`.
 
 ```Python
 # create figure
@@ -267,9 +266,9 @@ plt.show()
 
 #### Grouped Bar Charts
 
-Let's say we want to produce a grouped bar chart.
+47. Let's say we want to produce a grouped bar chart.
 
-We can create a `DataFrame` with four columns and random values.
+48. We can create a `DataFrame` with four columns and random values.
 
 ```Python
 # create dataframe
@@ -279,25 +278,25 @@ df2 = pd.DataFrame(np.random.randn(10, 4), columns=['a', 'b', 'c', 'd'])
 df2.plot.bar()
 ```
 
-By default, `.plot.bar()` creates a separate bar for each of the numeric columns.
+49. By default, `.plot.bar()` creates a separate bar for each of the numeric columns.
 
-We could select a single column using `['']` to only show one bar or column value.
+50. We could select a single column using `['']` to only show one bar or column value.
 
 #### Stacked Bar Charts
 
-If we wanted to show this data as a stacked bar chart, we would set the `stacked` parameter to `True`.
+51. If we wanted to show this data as a stacked bar chart, we would set the `stacked` parameter to `True`.
 ```Python
 df2.plot.bar(stacked=True)
 ```
 
 #### Horizontal Bar Charts
 
-Remember `.plot.barh()` generates a horizontal bar chart, and we can also set `stacked` to `True` here to create a horizontal stacked bar chart.
+52. Remember `.plot.barh()` generates a horizontal bar chart, and we can also set `stacked` to `True` here to create a horizontal stacked bar chart.
 ```Python
 df2.plot.barh(stacked=True)
 ```
 
-For more on bar charts:
+53. For more on bar charts:
 - [`pandas`, "Bar plots"](https://pandas.pydata.org/docs/user_guide/visualization.html#bar-plots)
 - [`pandas.DataFrame.plot`](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.plot.html)
 - [`pandas.DataFrame.plot.bar`](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.plot.bar.html)
@@ -305,9 +304,9 @@ For more on bar charts:
 
 ### Histograms
 
-The `.plot.hist()` method will generate a histogram.
+54. The `.plot.hist()` method will generate a histogram.
 
-We can also use `.hist()` to generate a histogram.
+55. We can also use `.hist()` to generate a histogram.
 
 ```Python
 # create dataframe with three columns using dictionary with random number data
@@ -320,30 +319,30 @@ plt.figure()
 df4.plot.hist(alpha=0.5)
 ```
 
-We can set `stacked` to `True` to create a stacked histogram.
+56. We can set `stacked` to `True` to create a stacked histogram.
 ```Python
 df4.hist(stacked=True)
 ```
 
-We can also specify the bin size using the `bins` keyword.
+57. We can also specify the bin size using the `bins` keyword.
 ```Python
 df4.plot.hist(bins=20)
 ```
 
-We can use the `.hist()` method in `matplotlib` to further customize our histogram: [`matplotlib.axes.Axes.hist`](https://matplotlib.org/api/_as_gen/matplotlib.axes.Axes.hist.html#matplotlib.axes.Axes.hist)
+58. We can use the `.hist()` method in `matplotlib` to further customize our histogram: [`matplotlib.axes.Axes.hist`](https://matplotlib.org/api/_as_gen/matplotlib.axes.Axes.hist.html#matplotlib.axes.Axes.hist)
 
-For more on histograms:
+59. For more on histograms:
 - [`pandas`, "Visualization, Histograms"](https://pandas.pydata.org/docs/user_guide/visualization.html#visualization-hist)
 - [`pandas.DataFrame.plot.hist`](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.plot.hist.html)
 - [`pandas.DataFrame.hist`](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.hist.html)
 
 ### Box plots
 
-We can generate box plots using `.plot.box()` or `.boxplot()`.
+60. We can generate box plots using `.plot.box()` or `.boxplot()`.
 
-The default settings visualize the distribution of values within each column.
+61. The default settings visualize the distribution of values within each column.
 
-Back to our random number dataframe, this time with five columns.
+62. Back to our random number `DataFrame`, this time with five columns.
 
 ```Python
 # create dataframe
@@ -353,12 +352,12 @@ df = pd.DataFrame(np.random.randn(10, 5), columns=['A', 'B', 'C', 'D', 'E'])
 df.plot.box()
 ```
 
-We can add colors to our box plot using the `color` keyword.
+63. We can add colors to our box plot using the `color` keyword.
 ```Python
 df.plot.box(color='blue')
 ```
 
-We can also use a dictionary with key-value pairs for each component of our box plot.
+64. We can also use a dictionary with key-value pairs for each component of our box plot.
 ```Python
 # set color dictionary
 color = {"boxes": "DarkGreen", "whiskers": "DarkOrange", "medians": "DarkBlue", "caps": "Gray",}
@@ -368,56 +367,56 @@ color = {"boxes": "DarkGreen", "whiskers": "DarkOrange", "medians": "DarkBlue", 
 df.plot.box(color=color, sym="r+")
 ```
 
-For more on box plots:
+65. For more on box plots:
 - [`pandas`, "Visualization, Box plots"](https://pandas.pydata.org/docs/user_guide/visualization.html#box-plots)
 - [`pandas.DataFrame.plot.box`](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.plot.box.html)
 - [`pandas.DataFrame.boxplot`](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.boxplot.html)
 
 ### Area Plots
 
-Basic syntax:
+66. Basic syntax:
 ```Python
 df = pd.DataFrame(np.random.randn(10, 4), columns=["a", "b", "c", "d"])
 
 df.plot.area()
 ```
 
-For more on area plots:
+67. For more on area plots:
 - [`pandas`, "Visualization, Area plot"](https://pandas.pydata.org/docs/user_guide/visualization.html#area-plot)
 - [`pandas.DataFrame.plot`](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.plot.html)
 - [`pandas.DataFrame.plot.area`](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.plot.area.html)
 
 ### Scatter Plots
 
-Basic syntax:
+68. Basic syntax:
 ```Python
 df = pd.DataFrame(np.random.rand(50, 4), columns=["a", "b", "c", "d"])
 
 df.plot.scatter(x="a", y="b")
 ```
 
-For more on scatter plots:
+69. For more on scatter plots:
 - [`pandas`, "Visualization, Scatter plot"](https://pandas.pydata.org/docs/user_guide/visualization.html#scatter-plot)
 - [`pandas.DataFrame.plot`](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.plot.html)
 - [`pandas.DataFrame.plot.scatter`](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.plot.scatter.html)
 
 ### Pie Charts
 
-Basic syntax:
+70. Basic syntax:
 ```Python
 series = pd.Series(3 * np.random.rand(4), index=["a", "b", "c", "d"], name="series")
 
 series.plot.pie(figsize=(6, 6))
 ```
 
-For more on pie plots:
+71. For more on pie plots:
 - [`pandas`, "Visualization, Scatter plot"](https://pandas.pydata.org/docs/user_guide/visualization.html#scatter-plot)
 - [`pandas.DataFrame.plot`](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.plot.html)
 - [`pandas.DataFrame.plot.scatter`](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.plot.scatter.html)
 
 ## `.plot()` and Missing Data
 
-Just like `pandas` has built-in settings for handling missing data or `NaN` values, the `.plot()` method also has default settings for how each type of plot handles missing data.
+72. Just like `pandas` has built-in settings for handling missing data or `NaN` values, the `.plot()` method also has default settings for how each type of plot handles missing data.
 
 Plot Type | NaN Handling 
 --- | ---
@@ -432,11 +431,11 @@ Kernel density (KDE) | Drops missing values (column-wise)
 Hexbin | Drops missing values
 Pie | Fills 0s
 
-To customize or alter these default settings, you would use `.fillna()` or `.dropna()` to filter the `DataFrame` before generating the plot.
+73. To customize or alter these default settings, you would use `.fillna()` or `.dropna()` to filter the `DataFrame` before generating the plot.
 
 ## Additional Resources
 
-For more on plotting with `pandas` and `matplotlib`:
+74. For more on plotting with `pandas` and `matplotlib`:
 - [`pandas`, Tutorials, "Plotting"](https://pandas.pydata.org/docs/getting_started/intro_tutorials/04_plotting.html)
 - [`pandas`, "Plotting tools"](https://pandas.pydata.org/docs/user_guide/visualization.html#plotting-tools)
 - [`pandas`, "Plot formatting"](https://pandas.pydata.org/docs/user_guide/visualization.html#plot-formatting)
@@ -444,21 +443,21 @@ For more on plotting with `pandas` and `matplotlib`:
 
 # Working with `pandas` and `seaborn`
 
-As we've covered previously, `matplotlib` gives you a wide range of base components to work with when generating plots.
+75. As we've covered previously, `matplotlib` gives you a wide range of base components to work with when generating plots.
 
-But, `matplotlib` does have limitations, and building a plot from the ground up, specifying each component can be cumbersome (and result in significant boilerplate code).
+76. But, `matplotlib` does have limitations, and building a plot from the ground up, specifying each component can be cumbersome (and result in significant boilerplate code).
 
-Advanced statistical analysis with `matplotlib` is possible, but cumbersome.
+77. Advanced statistical analysis with `matplotlib` is possible, but cumbersome.
 
-If you need to engage in advanced statistical analysis beyond what is easily accessible in `matplotlib`, `seaborn` is a statistical data visualization library that works well with `pandas`.
+78. If you need to engage in advanced statistical analysis beyond what is easily accessible in `matplotlib`, `seaborn` is a statistical data visualization library that works well with `pandas`.
 
-"`seaborn` is a Python data visualization library based on matplotlib. It provides a high-level interface for drawing attractive and informative statistical graphics" (["Seaborn"](https://seaborn.pydata.org/).
+79. "`seaborn` is a Python data visualization library based on matplotlib. It provides a high-level interface for drawing attractive and informative statistical graphics" (["Seaborn"](https://seaborn.pydata.org/).
 
-`seaborn` works with `numpy`, `scipy`, `pandas`, and `matplotlib` to simply high-level functions for common statistical plots.
+80. `seaborn` works with `numpy`, `scipy`, `pandas`, and `matplotlib` to simply high-level functions for common statistical plots.
 
-Let's compare `seaborn` and `matplotlib` using random walk data and a line plot.
+81. Let's compare `seaborn` and `matplotlib` using random walk data and a line plot.
 
-Sample line plot generated using only `matplotlib`:
+82. Sample line plot generated using only `matplotlib`:
 ```Python
 # import necessary packages
 import matplotlib.pyplot as plt
@@ -483,9 +482,9 @@ ax.legend('ABCDEF', ncol=2, loc='upper left')
 plt.show()
 ```
 
-An okay plot, but not particularly effective for this data.
+83. An okay plot, but not particularly effective for this data.
 
-Let's generate the same plot with `seaborn` running on top of `matplotlib`.
+84. Let's generate the same plot with `seaborn` running on top of `matplotlib`.
 ```Python
 # add seaborn package
 import seaborn as sns
@@ -506,15 +505,15 @@ ax.legend('ABCDEF', ncol=2, loc='upper left')
 plt.show()
 ```
 
-A simple way to incorporate `seaborn` with `matplotlib` is to use `seaborn`'s plot styling.
+85. A simple way to incorporate `seaborn` with `matplotlib` is to use `seaborn`'s plot styling.
 
-`matplotlib` also has a few different style sheets based on `seaborn`.
+86. `matplotlib` also has a few different style sheets based on `seaborn`.
 
-Let's look at a couple more sophisticated statistical plots built using `seaborn`.
+87. Let's look at a couple more sophisticated statistical plots built using `seaborn`.
 
-We can create a plot that highlights the relationship between resturaunt bill amount, tip, and meal time.
+88. We can create a plot that highlights the relationship between resturaunt bill amount, tip, and meal time.
 
-This data comes from the `tips` example dataset already packaged in `seaborn`.
+89. This data comes from the `tips` example dataset already packaged in `seaborn`.
 ```Python
 # import seaborn
 import seaborn as sns
@@ -529,13 +528,13 @@ tips = sns.load_dataset("tips")
 sns.relplot(data=tips, x="total_bill", y="tip", col="time", hue="smoker", style="smoker", size="size",)
 ```
 
-`seaborn` draws on `matplotlib`, but we don't need to directly load or import `matplotlib`.
+90. `seaborn` draws on `matplotlib`, but we don't need to directly load or import `matplotlib`.
 
-We load the `tips` dataset as a `DataFrame`.
+91. We load the `tips` dataset as a `DataFrame`.
 
-We then create a visualization that shows the relationships between the five dataset variables through the single call to the `.relplot()` function.
+92. We then create a visualization that shows the relationships between the five dataset variables through the single call to the `.relplot()` function.
 
-We can start to think through all of the work happening behind the scenes in `matplotlib` to generate this visualization:
+93. We can start to think through all of the work happening behind the scenes in `matplotlib` to generate this visualization:
 - create figure/axes object with a 2, 1 subplot grid
 - create subplots
 - set tick values and labels for each axis for both subplots
@@ -544,21 +543,21 @@ We can start to think through all of the work happening behind the scenes in `ma
 - set symbol types, color, and size for each type of datapoint, for each subplot
 - generate legend
 
-And the list goes on.
+94. And the list goes on.
 
-`seaborn` handles all of those translations from the dataframe to `matplotlib` arguments.
+95. `seaborn` handles all of those translations from the dataframe to `matplotlib` arguments.
 
-This simplifies the work of writing code to generate this plot.
+96. This simplifies the work of writing code to generate this plot.
 
-`seaborn`'s `.relplot()` function is designed to visualize statistical relationships.
+97. `seaborn`'s `.relplot()` function is designed to visualize statistical relationships.
 
-Sometimes scatterplots are the most effective way to show these relationships.
+98. Sometimes scatterplots are the most effective way to show these relationships.
 
-But, in a relationship where one variable is a measure of time, a line can be a more effective representation.
+99. But, in a relationship where one variable is a measure of time, a line can be a more effective representation.
 
-We can use the `kind` parameter with the `.relplot()` function to make this change.
+100. We can use the `kind` parameter with the `.relplot()` function to make this change.
 
-An example of `.relplot()` using a different sample dataset.
+101. An example of `.relplot()` using a different sample dataset.
 ```Python
 # load sample dataset as dataframe
 dots = sns.load_dataset('dots')
@@ -572,11 +571,11 @@ sns.relplot(
 )
 ```
 
-In this example, the `style` parameter impacted line weight and style, rather than marker size as it did in the previous example.
+102. In this example, the `style` parameter impacted line weight and style, rather than marker size as it did in the previous example.
 
-A few other `seaborn` examples.
+103. A few other `seaborn` examples.
 
-Relationship plot that presents average of one variable as a function of other variables.
+104. Relationship plot that presents average of one variable as a function of other variables.
 ```Python
 fmri = sns.load_dataset("fmri")
 sns.relplot(
@@ -586,47 +585,47 @@ sns.relplot(
 )
 ```
 
-`seaborn` estimates the statistical values using bootstrapping to compute confidence intervals and draw error bars to show uncertainty.
+105. `seaborn` estimates the statistical values using bootstrapping to compute confidence intervals and draw error bars to show uncertainty.
 
-We could go back to our bill and tip data to generate a scatterplot that includes a linear regression model.
+106. We could go back to our bill and tip data to generate a scatterplot that includes a linear regression model.
 ```Python
 sns.lmplot(data=tips, x="total_bill", y="tip", col="time", hue="smoker")
 ```
 
-We can visualize variable distribution with kernel density estimation.
+107. We can visualize variable distribution with kernel density estimation.
 ```Python
 sns.displot(data=tips, x="total_bill", col="time", kde=True)
 ```
 
-`seaborn` can also calculate and plot the empirical cumulative distribution function (`ecdf`).
+108. `seaborn` can also calculate and plot the empirical cumulative distribution function (`ecdf`).
 ```Python
 sns.displot(data=tips, kind="ecdf", x="total_bill", col="time", hue="smoker", rug=True)
 ```
 
-We can also generate plots that are geared toward categorical data.
+109. We can also generate plots that are geared toward categorical data.
 
-A `swarm` plot is a scatterplot with adjusted point positions on the categorical axis to minimize overlap
+110. A `swarm` plot is a scatterplot with adjusted point positions on the categorical axis to minimize overlap
 ```Python
 sns.catplot(data=tips, kind="swarm", x="day", y="total_bill", hue="smoker")
 ```
 
-We could also display this categorical data using kernel density estimation and a violin plot.
+111. We could also display this categorical data using kernel density estimation and a violin plot.
 ```Python
 sns.catplot(data=tips, kind="violin", x="day", y="total_bill", hue="smoker", split=True)
 ```
 
-We could also display this data with a grouped bar chart that shows mean values and confidence intervals for each category.
+112. We could also display this data with a grouped bar chart that shows mean values and confidence intervals for each category.
 ```Python
 sns.catplot(data=tips, kind="bar", x="day", y="total_bill", hue="smoker")
 ```
 
-This is just a taste of how `seaborn` works to generate more advanced statistical plots.
+113. This is just a taste of how `seaborn` works to generate more advanced statistical plots.
 
-Because the package integrates with `matplotlib`, customizing `seaborn` plots requires knowledge of `matplotlib` functionality and syntax.
+114. Because the package integrates with `matplotlib`, customizing `seaborn` plots requires knowledge of `matplotlib` functionality and syntax.
 
-Dropping down to the `matplotlib` layer is not always necessary (as shown in these examples), but a robust `matplotlib` foundation is knowledge that transfers when working with `seaborn`.
+115. Dropping down to the `matplotlib` layer is not always necessary (as shown in these examples), but a robust `matplotlib` foundation is knowledge that transfers when working with `seaborn`.
 
-For more on `seaborn`:
+116. For more on `seaborn`:
 - [`seaborn`, "seaborn: statistical data visualization"](http://seaborn.pydata.org/)
 - [`seaborn`, "Installing and getting started"](https://seaborn.pydata.org/installing.html)
 - [`seaborn`, "An introduction to seaborn"](http://seaborn.pydata.org/introduction.html)
@@ -635,3 +634,6 @@ For more on `seaborn`:
 - [`seaborn`, "API reference"](https://seaborn.pydata.org/api.html)
 - [Jake VanderPlas, "Visualization With Seaborn" from *Python Data Science Handbook*](https://jakevdp.github.io/PythonDataScienceHandbook/04.14-visualization-with-seaborn.html)
 
+# Practice Problems
+
+# Lab Notebook Questions
