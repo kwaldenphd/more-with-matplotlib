@@ -445,6 +445,7 @@ Plot types to choose from:
  <li>Area plot</li>
  <li>Scatter plot</li>
  <li>Pie chart</li>
+ <li>Table</li>
  </ul>
  </blockquote>
 
