@@ -5,6 +5,15 @@ This tutorial is licensed under a <a href="http://creativecommons.org/licenses/b
 
 ## Lab Goals
 
+This lab covers how to generate `matplotlib` plots for data stored in a `pandas` `DataFrame`. It provides an overview of how to generate a variety of common plot types, including line plots, bar charts, histograms, bax plots, area plots, scatter plots, and pie charts. It also covers how `pandas`'s plotting function handles missing data. It provides a comparison of the `matplotlib` and `seaborn` plotting packages and provides an introduction to `seaborn` with sample code. 
+
+By the end of this lab, students will be able to:
+- Understand how to generate `matplotlib` plots for data stored in a `pandas` `DataFrame`, for a variety of plot types
+- Understand how to navigate the `pandas` documentation to troubleshoot and further explore `pandas`'s plotting functions
+- Understand the basic distinctions and relationship between `matplotlib` and `seaborn`
+
+[Click here](https://raw.githubusercontent.com/kwaldenphd/more-with-matplotlib/main/more-with-matplotlib.ipynb) and select the "Save As" option to download this lab as as Jupyter Notebook.
+
 ## Acknowledgements
 
 The author consulted the following resources when writing  this tutorial:
@@ -414,6 +423,33 @@ series.plot.pie(figsize=(6, 6))
 - [`pandas.DataFrame.plot`](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.plot.html)
 - [`pandas.DataFrame.plot.scatter`](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.plot.scatter.html)
 
+<blockquote>Q1: Build at least three different types of plots using matplotlib and data stored in a Pandas DataFrame. Include code + comments.
+ 
+Each plot should include the following elements:
+ <ul>
+  <li>Title</li>
+  <li>Axis labels</li>
+  <li>Legend</li>
+  <li>Scale or tickmarks</li>
+  <li>Data source</li>
+ </ul>
+ 
+Plot types to choose from:
+ <ul>
+ <li>Line plots</li>
+ <li>Bar chart</li>
+ <li>Grouped bar chart</li>
+ <li>Horizontal bar chart</li>
+ <li>Stacked bar chart</li>
+ <li>Histogram</li>
+ <li>Box plot</li>
+ <li>Area plot</li>
+ <li>Scatter plot</li>
+ <li>Pie chart</li>
+ </ul>
+ </blockquote>
+
+
 ## `.plot()` and Missing Data
 
 72. Just like `pandas` has built-in settings for handling missing data or `NaN` values, the `.plot()` method also has default settings for how each type of plot handles missing data.
@@ -634,6 +670,76 @@ sns.catplot(data=tips, kind="bar", x="day", y="total_bill", hue="smoker")
 - [`seaborn`, "API reference"](https://seaborn.pydata.org/api.html)
 - [Jake VanderPlas, "Visualization With Seaborn" from *Python Data Science Handbook*](https://jakevdp.github.io/PythonDataScienceHandbook/04.14-visualization-with-seaborn.html)
 
+<blockquote>Q2: Build at least two different types of plots using seaborn and data stored in a Pandas DataFrame. Include code + comments.
+ 
+Each plot should include the following elements:
+ <ul>
+  <li>Title</li>
+  <li>Axis labels</li>
+  <li>Legend</li>
+  <li>Scale or tickmarks</li>
+  <li>Data source</li>
+ </ul>
+ 
+Plot types to choose from:
+ <ul>
+ <li>Line plots</li>
+ <li>Bar chart</li>
+ <li>Grouped bar chart</li>
+ <li>Horizontal bar chart</li>
+ <li>Stacked bar chart</li>
+ <li>Histogram</li>
+ <li>Box plot</li>
+ <li>Area plot</li>
+ <li>Scatter plot</li>
+ <li>Pie chart</li>
+ </ul>
+ </blockquote>
+ 
 # Project Prompts
 
+No problem prompts for this lab. Spend this time working on the final project.
+
 # Lab Notebook Questions
+
+Q1: Build at least three different types of plots using matplotlib and data stored in a Pandas DataFrame. Include code + comments. 
+
+Each plot should include the following elements:
+- Title
+- Axis labels
+- Legend
+- Scale or tickmarks
+- Data source
+ 
+Plot types to choose from:
+- Line plots
+- Bar chart
+- Grouped bar chart
+- Horizontal bar chart
+- Stacked bar chart
+- Histogram
+- Box plot
+- Area plot
+- Scatter plot
+- Pie chart
+
+Q2: Build at least two different types of plots using seaborn and data stored in a Pandas DataFrame. Include code + comments.
+
+Each plot should include the following elements:
+- Title
+- Axis labels
+- Legend
+- Scale or tickmarks
+- Data source
+ 
+Plot types to choose from:
+- Line plots
+- Bar chart
+- Grouped bar chart
+- Horizontal bar chart
+- Stacked bar chart
+- Histogram
+- Box plot
+- Area plot
+- Scatter plot
+- Pie char
