@@ -65,7 +65,7 @@ The author consulted the following resources when writing  this tutorial:
 import pandas as pd
 
 # load data from url to dataframe
-air_quality = pd.read_csv('https://raw.githubusercontent.com/pandas-dev/pandas/master/doc/data/air_quality_no2.csv', index_col=0, parse_dates=True)
+air_quality = pd.read_csv('https://raw.githubusercontent.com/kwaldenphd/more-with-matplotlib/main/air_quality_no2.csv', index_col=0, parse_dates=True)
 
 # check data has loaded
 air_quality.head()
@@ -372,7 +372,6 @@ df.plot.box(color='blue')
 color = {"boxes": "DarkGreen", "whiskers": "DarkOrange", "medians": "DarkBlue", "caps": "Gray",}
 
 # draw plot and specify colors and outlier symbol using keyword argument or kwarg
-```Python
 df.plot.box(color=color, sym="r+")
 ```
 
@@ -522,7 +521,7 @@ plt.show()
 
 84. Let's generate the same plot with `seaborn` running on top of `matplotlib`.
 ```Python
-# add seaborn package
+# import seaborn package
 import seaborn as sns
 
 # set seaborn  style
@@ -742,4 +741,4 @@ Plot types to choose from:
 - Box plot
 - Area plot
 - Scatter plot
-- Pie char
+- Pie chart
