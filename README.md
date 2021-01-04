@@ -31,7 +31,7 @@ The author consulted the following resources when writing  this tutorial:
     * [Pie Charts](#pie-charts)
   * [`.plot()` and Missing Data](#plot-and-missing-data)
 - [Working with `pandas` and `seaborn`](#working-with-pandas-and-seaborn)
-- [Practice Problems](#practice-problems)
+- [Project Prompts](#project-prompts)
 - [Lab Notebook Questions](#lab-notebook-questions)
 
 # `pandas` and `matplotlib`
@@ -634,6 +634,6 @@ sns.catplot(data=tips, kind="bar", x="day", y="total_bill", hue="smoker")
 - [`seaborn`, "API reference"](https://seaborn.pydata.org/api.html)
 - [Jake VanderPlas, "Visualization With Seaborn" from *Python Data Science Handbook*](https://jakevdp.github.io/PythonDataScienceHandbook/04.14-visualization-with-seaborn.html)
 
-# Practice Problems
+# Project Prompts
 
 # Lab Notebook Questions
