@@ -384,7 +384,7 @@ df.plot.box(color=color, sym="r+")
 
 66. Basic syntax:
 ```Python
-df = pd.DataFrame(np.random.randn(10, 4), columns=["a", "b", "c", "d"])
+df = pd.DataFrame(np.random.rand(10, 4), columns=["a", "b", "c", "d"])
 
 df.plot.area()
 ```
