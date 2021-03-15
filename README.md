@@ -14,6 +14,8 @@ By the end of this lab, students will be able to:
 
 [Click here](https://raw.githubusercontent.com/kwaldenphd/more-with-matplotlib/main/more-with-matplotlib.ipynb) and select the "Save As" option to download this lab as as Jupyter Notebook.
 
+[Link to lab overview video](https://notredame.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=638cdd91-60ee-4dc1-af1c-aceb01779ea9) (Panopto, ND users).
+
 ## Acknowledgements
 
 The author consulted the following resources when writing  this tutorial:
