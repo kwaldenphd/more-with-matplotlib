@@ -420,9 +420,8 @@ series.plot.pie(figsize=(6, 6))
 ```
 
 71. For more on pie plots:
-- [`pandas`, "Visualization, Scatter plot"](https://pandas.pydata.org/docs/user_guide/visualization.html#scatter-plot)
-- [`pandas.DataFrame.plot`](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.plot.html)
-- [`pandas.DataFrame.plot.scatter`](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.plot.scatter.html)
+- [`pandas`, "Visualization, Pie Plot"](https://pandas.pydata.org/docs/user_guide/visualization.html#pie-plot)
+- [`pandas.DataFrame.plot.pie`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.plot.pie.html#pandas.DataFrame.plot.pie)
 
 <blockquote>Q1: Build at least three different types of plots using matplotlib and data stored in a Pandas DataFrame. Include code + comments.
  
