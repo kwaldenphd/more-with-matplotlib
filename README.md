@@ -1,31 +1,6 @@
-# More With `matplotlib`
-
-<a href="http://creativecommons.org/licenses/by-nc/4.0/" rel="license"><img style="border-width: 0;" src="https://i.creativecommons.org/l/by-nc/4.0/88x31.png" alt="Creative Commons License" /></a>
-This tutorial is licensed under a <a href="http://creativecommons.org/licenses/by-nc/4.0/" rel="license">Creative Commons Attribution-NonCommercial 4.0 International License</a>.
-
-## Lab Goals
-
-This lab covers how to generate `matplotlib` plots for data stored in a `pandas` `DataFrame`. It provides an overview of how to generate a variety of common plot types, including line plots, bar charts, histograms, box plots, area plots, scatter plots, and pie charts. It also covers how `pandas`'s plotting function handles missing data. It provides a comparison of the `matplotlib` and `seaborn` plotting packages and provides an introduction to `seaborn` with sample code. 
-
-By the end of this lab, students will be able to:
-- Understand how to generate `matplotlib` plots for data stored in a `pandas` `DataFrame`, for a variety of plot types
-- Understand how to navigate the `pandas` documentation to troubleshoot and further explore `pandas`'s plotting functions
-- Understand the basic distinctions and relationship between `matplotlib` and `seaborn`
-
-## Acknowledgements
-
-The author consulted the following resources when writing  this tutorial:
-- Chapter 4.14 "Visualization With Seaborn" from Jake VanderPlas, [*Python Data Science Handbook: Essential Tools for Working with Data*](https://jakevdp.github.io/PythonDataScienceHandbook/04.14-visualization-with-seaborn.html ) (O'Reilly, 2016)
-- `pandas`, [User Guide, "Visualization"](https://pandas.pydata.org/docs/user_guide/visualization.html)
-- `pandas`, [Getting Started, "Plotting"](https://pandas.pydata.org/docs/getting_started/intro_tutorials/04_plotting.html)
-- Chapter 9 "Plotting and Visualization" from Wes McKinney, [*Python for Data Analysis: Data Wrangling With pandas, Numpy, and IPython*](https://www.oreilly.com/library/view/python-for-data/9781491957653/) (O'Reilly, 2017)
-- Chapter 15 "Generating Data" from Eric Matthes, [*Python Crash Course: A Hands-On, Project-Based Introduction to Programming*](https://ehmatthes.github.io/pcc/) (No Starch Press, 2019).
-- [`seaborn` package documentation](https://seaborn.pydata.org/introduction.html)
-
-# Table of Contents
-
 - [Lab notebook template](#lab-notebook-template)
 - [Data](#data)
+- [Setup and Environment](#setup-and-environment)
 - [`pandas` and `matplotlib`](#pandas-and-matplotlib)
   * [Plotting in `pandas` Using `.plot()`](#plotting-in-pandas-using-plot)
     * [Time Series Data and Line Plots](#time-series-data-and-line-plots)
@@ -95,6 +70,47 @@ import pandas as pd
 # load data from url
 football = pd.read_csv("https://raw.githubusercontent.com/kwaldenphd/more-with-matplotlib/main/data/nd_football.csv")
 ```
+
+# Setup and Environment
+
+## GeoPandas
+
+Later in this lab, we'll be using a package called `GeoPandas` for plotting spatial data.
+
+Installing and configuring `Geopandas` requires creating a new Python environment.
+
+A few resources that can get folks started:
+  
+**Installing and Configuring `geopandas`**:
+- Anaconda
+  * Tanish Gupta, "[Fastest Way to Install Geopandas in Jupyter Notebooks](https://medium.com/analytics-vidhya/fastest-way-to-install-geopandas-in-jupyter-notebook-on-windows-8f734e11fa2b)" *Analytics Vidhya* (6 December 2020)
+  * Anaconda, "[conda-forge packages, geopandas](https://anaconda.org/conda-forge/geopandas)" *Anaconda documentation*
+  * GeoPandas, "[Installation](https://geopandas.org/getting_started/install.html)" *GeoPandas documentation*
+- Google CoLab
+  * Abdishakur Hassan, Jupyter notebook on using `geopandas` in Google CoLab, from "[Geographic data science tutorials with Python](https://github.com/shakasom/GDS)" *GitHub repository*
+    * [Google CoLab](https://colab.research.google.com/github/shakasom/GDS/blob/master/Part1%20-%20Introduction.ipynb)
+    * [GitHub](https://github.com/shakasom/GDS/blob/master/Part1%20-%20Introduction.ipynb)
+
+Additional `GeoPandas` resources:
+- Jonathan Soma, "[Mapping with geopandas](https://jonathansoma.com/lede/foundations-2017/classes/geopandas/mapping-with-geopandas/)" from 2017 "[Foundations of Computing](https://jonathansoma.com/lede/foundations-2017/)" course, Columbia Graduate School of Journalism
+- CoderzColumn, "[Plotting Static Maps with geopandas](https://coderzcolumn.com/tutorials/data-science/plotting-static-maps-with-geopandas-working-with-geospatial-data)" *CoderzColumn* (11 March 2020)
+- GeoPandas, "[Plotting with Geoplot and GeoPandas](https://geopandas.org/gallery/plotting_with_geoplot.html)" *GeoPandas documentation*
+
+## Geocoding Data
+
+Later in this lab we'll look at plotting geospatial data to generate maps.
+
+But if you're wanting to work with your own data and it does not have geospatial attributes (latitude and longitude), you'll need to add that information via a process called geocoding.
+
+Free online geocoding services:
+- [LocalFocus data journalism batch geocoder](https://geocode.localfocus.nl/)
+- [Texas A&M Geocoding Services](https://geoservices.tamu.edu/Services/Geocode/)
+  * *Requires creating a free account*
+  
+There are also Python libraries that support geocoding.
+- [`GeoPy`](https://geopy.readthedocs.io/en/stable/)
+- [`Geocoder`](https://geocoder.readthedocs.io/providers/Mapbox.html) (requires a free Mapbox API key)
+- Abdishakur, ["Geocode with Python"](https://towardsdatascience.com/geocode-with-python-161ec1e62b89) *Towards Data Science* (15 September 2019)
 
 # `pandas` and `matplotlib`
 
