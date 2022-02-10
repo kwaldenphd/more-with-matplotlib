@@ -12,10 +12,6 @@ By the end of this lab, students will be able to:
 - Understand how to navigate the `pandas` documentation to troubleshoot and further explore `pandas`'s plotting functions
 - Understand the basic distinctions and relationship between `matplotlib` and `seaborn`
 
-[Click here](https://raw.githubusercontent.com/kwaldenphd/more-with-matplotlib/main/more-with-matplotlib.ipynb) and select the "Save As" option to download this lab as as Jupyter Notebook.
-
-[Link to lab overview video](https://notredame.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=638cdd91-60ee-4dc1-af1c-aceb01779ea9) (Panopto, ND users).
-
 ## Acknowledgements
 
 The author consulted the following resources when writing  this tutorial:
@@ -28,8 +24,10 @@ The author consulted the following resources when writing  this tutorial:
 
 # Table of Contents
 
+- [Lab notebook template](#lab-notebook-template)
+- [Data](#data)
 - [`pandas` and `matplotlib`](#pandas-and-matplotlib)
-  * [Plotting in `pandas`Uusing `.plot()`](#plotting-in-pandas-using-plot)
+  * [Plotting in `pandas` Using `.plot()`](#plotting-in-pandas-using-plot)
     * [Time Series Data and Line Plots](#time-series-data-and-line-plots)
     * [Bar Charts](#bar-charts)
       * [Grouped Bar Charts](#grouped-bar-charts)
@@ -40,10 +38,21 @@ The author consulted the following resources when writing  this tutorial:
     * [Area Plots](#area-plots)
     * [Scatter Plots](#scatter-plots)
     * [Pie Charts](#pie-charts)
+    * [Mapping](#mapping)
+  * [Lab Notebook Question 1](#lab-notebook-question-1)
   * [`.plot()` and Missing Data](#plot-and-missing-data)
 - [Working with `pandas` and `seaborn`](#working-with-pandas-and-seaborn)
-- [Project Prompts](#project-prompts)
+  * [Lab Notebook Question 2](#lab-notebook-question-2)
 - [Lab Notebook Questions](#lab-notebook-questions)
+
+[Link to lab procedure as a Jupyter Notebook](https://drive.google.com/file/d/1tq9fJX9oX_5cL1stEHRpMMmoNL573f9_/view?usp=sharing)
+
+# Lab Notebook Template
+
+[Link to lab notebook template (Jupyter Notebook)](https://drive.google.com/file/d/1qUT3e8D02oABf6DBjMEm6sb7thhk7wIR/view?usp=sharing)
+
+# Data
+
 
 # `pandas` and `matplotlib`
 
@@ -423,37 +432,156 @@ series.plot.pie(figsize=(6, 6))
 - [`pandas`, "Visualization, Pie Plot"](https://pandas.pydata.org/docs/user_guide/visualization.html#pie-plot)
 - [`pandas.DataFrame.plot.pie`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.plot.pie.html#pandas.DataFrame.plot.pie)
 
-<blockquote>Q1: Build at least three different types of plots using matplotlib and data stored in a Pandas DataFrame. Include code + comments.
- 
-Each plot should include the following elements:
- <ul>
-  <li>Title</li>
-  <li>Axis labels</li>
-  <li>Legend</li>
-  <li>Scale or tickmarks</li>
-  <li>Data source</li>
- </ul>
+### Mapping
+
+72. Up to this point, we have been working with data plotted on a 2D cartesian coordinate system, with x and y axes.
+
+73. For our purposes, it's most useful to think of maps in the same way--as data plotted on a coordinate system.
+
+74. Except for maps, that coordinate system is typically some type of latitude or longitude based projection, and the data to be plotted includes explicit location information (rather than a numerical or categorical field that can be mapped to an axis).
+
+75. We can use `GeoPandas` (a library based on `Pandas` that is geared toward geospatial data) in combination with `Shapely` and `Matplotlib` to generate static maps in Python.
+
+76. First- we need data that has geospatial attributes. Most often, this is some kind of `Latitude` and `Longitude` field.
+
+77. If our data includes addresses or city/state/country information, there are free online services that we can use to geocode data (add latitude/longitude information).
+
+**Free online geocoding services:**
+- [LocalFocus data journalism batch geocoder](https://geocode.localfocus.nl/)
+- [Texas A&M Geocoding Services](https://geoservices.tamu.edu/Services/Geocode/)
+  * *Requires creating a free account*
+  
+78. There are also Python libraries that support geocoding.
+- [`GeoPy`](https://geopy.readthedocs.io/en/stable/)
+- [`Geocoder`](https://geocoder.readthedocs.io/providers/Mapbox.html) (requires a free Mapbox API key)
+- Abdishakur, ["Geocode with Python"](https://towardsdatascience.com/geocode-with-python-161ec1e62b89) *Towards Data Science* (15 September 2019)
+  
+79. Installing and configuring `Geopandas` requires creating a new Python environment.
+
+80. A few resources that can get folks started:
+  
+**Installing and Configuring `geopandas`**:
+- Anaconda
+  * Tanish Gupta, "[Fastest Way to Install Geopandas in Jupyter Notebooks](https://medium.com/analytics-vidhya/fastest-way-to-install-geopandas-in-jupyter-notebook-on-windows-8f734e11fa2b)" *Analytics Vidhya* (6 December 2020)
+  * Anaconda, "[conda-forge packages, geopandas](https://anaconda.org/conda-forge/geopandas)" *Anaconda documentation*
+  * GeoPandas, "[Installation](https://geopandas.org/getting_started/install.html)" *GeoPandas documentation*
+- Google CoLab
+  * Abdishakur Hassan, Jupyter notebook on using `geopandas` in Google CoLab, from "[Geographic data science tutorials with Python](https://github.com/shakasom/GDS)" *GitHub repository*
+    * [Google CoLab](https://colab.research.google.com/github/shakasom/GDS/blob/master/Part1%20-%20Introduction.ipynb)
+    * [GitHub](https://github.com/shakasom/GDS/blob/master/Part1%20-%20Introduction.ipynb)
+
+81. We'll spend more time with mapping when we work with interactive visualization.
+
+82. But we can explore some static maps generated using `GeoPandas`, `Shapely`, and `Matplotlib`.
+
+83. For these maps, we'll be using , but some sample code that works with `shapely`, `geopandas`, and `matplotlib`.
+
+84. The data used for these maps is geocoded Notre Dame football schedule information scraped from College Football Reference.
+- [Link to data scraping Jupyter Notebook](https://github.com/kwaldenphd/football-structured-data/blob/main/notebooks/sf-nd-schedules.ipynb)
+- [Link to explore the data](https://github.com/kwaldenphd/football-structured-data/blob/main/data/combined_nd_schedules_cleaned.csv)
+
+```Python
+# import statements
+import pandas as pd
+
+# load data
+football = pd.read_csv("https://raw.githubusercontent.com/kwaldenphd/football-structured-data/main/data/combined_nd_schedules_cleaned.csv")
+```
+
+85. We can create a scatterplot using the latitude and longitude data.
+
+```Python
+# scatterplot of latitude and longitude data
+football.plot(x= "Longitude", y="Latitude", kind='scatter')
+```
+
+86. We can also explore what types of basemap layers are available through `GeoPandas`.
+
+```Python
+# show available geopandas datasets (for basemaps)
+geopandas.datasets.available
+
+# world basemap from naturalearth_lowres geopandas dataset
+world = gpd.read_file(geopandas.datasets.get_path("naturalearth_lowres"))
+
+# show basemap head
+world.head()
+```
+
+87. In order to create a map from the football data, we would need to create a point field from the latitude/longitude data.
+
+```Python
+# function that takes latitude and longitude columns from dataframe and creates Point field
+def make_point(row):
+    return Point(row.Longitude, row.Latitude)
+
+points = football.apply(make_point, axis=1)
+
+# create GeoDataFrame from football data and points geometry
+football_map = gpd.GeoDataFrame(football, geometry=points)
+
+# set GeoDataFrame coordinate system
+football_map.crs = {'init': 'epsg:4326'}
+
+# show head of GeoDataFrame
+football_map.head()
+```
+
+88. Then, we could generate a preliminary Cartesian Coordinate plot of the GeoDataFrame.
+
+```Python
+# preliminary cartesian coordinate plot of GeoDataFrame
+football_map.plot(figsize=(20,5))
+```
+
+89. From that point, we can add a basemap layer to create a static 2D map.
+
+```Python
+# create figure axes with world basemap
+ax = world.plot(figsize=(15, 5), linewidth=0.25, edgecolor="white", color="lightgrey")
+
+# set axes title
+ax.set_title("Geography of Notre Dame Football")
+
+# configure axes
+ax.axis('off')
+
+# plot football data with points colored by season
+football_map.plot(markersize=10, column="Season", cmap='viridis', alpha=0.5, ax=ax, legend=True)
+```
+
+90. Additional `GeoPandas` resources:
+- Jonathan Soma, "[Mapping with geopandas](https://jonathansoma.com/lede/foundations-2017/classes/geopandas/mapping-with-geopandas/)" from 2017 "[Foundations of Computing](https://jonathansoma.com/lede/foundations-2017/)" course, Columbia Graduate School of Journalism
+- CoderzColumn, "[Plotting Static Maps with geopandas](https://coderzcolumn.com/tutorials/data-science/plotting-static-maps-with-geopandas-working-with-geospatial-data)" *CoderzColumn* (11 March 2020)
+- GeoPandas, "[Plotting with Geoplot and GeoPandas](https://geopandas.org/gallery/plotting_with_geoplot.html)" *GeoPandas documentation*
+
+## Lab Notebook Question 1
+
+Q1: Build at least three different types of plots using matplotlib and data stored in a Pandas DataFrame. Include code + comments. 
+- *I encourage folks to use this question to explore visualizations you might use for the final project.*
+
+For each plot, include the following elements or components:
+- Title
+- Axis labels
+- Legend
+- Scale or tickmarks
+- Data source
  
 Plot types to choose from:
- <ul>
- <li>Line plots</li>
- <li>Bar chart</li>
- <li>Grouped bar chart</li>
- <li>Horizontal bar chart</li>
- <li>Stacked bar chart</li>
- <li>Histogram</li>
- <li>Box plot</li>
- <li>Area plot</li>
- <li>Scatter plot</li>
- <li>Pie chart</li>
- <li>Table</li>
- </ul>
- </blockquote>
-
+- Line plots
+- Bar chart
+- Grouped bar chart
+- Horizontal bar chart
+- Stacked bar chart
+- Histogram
+- Box plot
+- Area plot
+- Scatter plot
+- Pie chart
 
 ## `.plot()` and Missing Data
 
-72. Just like `pandas` has built-in settings for handling missing data or `NaN` values, the `.plot()` method also has default settings for how each type of plot handles missing data.
+91. Just like `pandas` has built-in settings for handling missing data or `NaN` values, the `.plot()` method also has default settings for how each type of plot handles missing data.
 
 Plot Type | NaN Handling 
 --- | ---
@@ -468,11 +596,11 @@ Kernel density (KDE) | Drops missing values (column-wise)
 Hexbin | Drops missing values
 Pie | Fills 0s
 
-73. To customize or alter these default settings, you would use `.fillna()` or `.dropna()` to filter the `DataFrame` before generating the plot.
+92. To customize or alter these default settings, you would use `.fillna()` or `.dropna()` to filter the `DataFrame` before generating the plot.
 
 ## Additional Resources
 
-74. For more on plotting with `pandas` and `matplotlib`:
+93. For more on plotting with `pandas` and `matplotlib`:
 - [`pandas`, Tutorials, "Plotting"](https://pandas.pydata.org/docs/getting_started/intro_tutorials/04_plotting.html)
 - [`pandas`, "Plotting tools"](https://pandas.pydata.org/docs/user_guide/visualization.html#plotting-tools)
 - [`pandas`, "Plot formatting"](https://pandas.pydata.org/docs/user_guide/visualization.html#plot-formatting)
@@ -480,21 +608,21 @@ Pie | Fills 0s
 
 # Working with `pandas` and `seaborn`
 
-75. As we've covered previously, `matplotlib` gives you a wide range of base components to work with when generating plots.
+94. As we've covered previously, `matplotlib` gives you a wide range of base components to work with when generating plots.
 
-76. But, `matplotlib` does have limitations, and building a plot from the ground up, specifying each component can be cumbersome (and result in significant boilerplate code).
+95. But, `matplotlib` does have limitations, and building a plot from the ground up, specifying each component can be cumbersome (and result in significant boilerplate code).
 
-77. Advanced statistical analysis with `matplotlib` is possible, but cumbersome.
+96. Advanced statistical analysis with `matplotlib` is possible, but cumbersome.
 
-78. If you need to engage in advanced statistical analysis beyond what is easily accessible in `matplotlib`, `seaborn` is a statistical data visualization library that works well with `pandas`.
+97. If you need to engage in advanced statistical analysis beyond what is easily accessible in `matplotlib`, `seaborn` is a statistical data visualization library that works well with `pandas`.
 
-79. "`seaborn` is a Python data visualization library based on matplotlib. It provides a high-level interface for drawing attractive and informative statistical graphics" (["Seaborn"](https://seaborn.pydata.org/).
+98. "`seaborn` is a Python data visualization library based on matplotlib. It provides a high-level interface for drawing attractive and informative statistical graphics" (["Seaborn"](https://seaborn.pydata.org/).
 
-80. `seaborn` works with `numpy`, `scipy`, `pandas`, and `matplotlib` to simply high-level functions for common statistical plots.
+99. `seaborn` works with `numpy`, `scipy`, `pandas`, and `matplotlib` to simply high-level functions for common statistical plots.
 
-81. Let's compare `seaborn` and `matplotlib` using random walk data and a line plot.
+100. Let's compare `seaborn` and `matplotlib` using random walk data and a line plot.
 
-82. Sample line plot generated using only `matplotlib`:
+101. Sample line plot generated using only `matplotlib`:
 ```Python
 # import necessary packages
 import matplotlib.pyplot as plt
@@ -519,9 +647,9 @@ ax.legend('ABCDEF', ncol=2, loc='upper left')
 plt.show()
 ```
 
-83. An okay plot, but not particularly effective for this data.
+102. An okay plot, but not particularly effective for this data.
 
-84. Let's generate the same plot with `seaborn` running on top of `matplotlib`.
+103. Let's generate the same plot with `seaborn` running on top of `matplotlib`.
 ```Python
 # import seaborn package
 import seaborn as sns
@@ -542,15 +670,15 @@ ax.legend('ABCDEF', ncol=2, loc='upper left')
 plt.show()
 ```
 
-85. A simple way to incorporate `seaborn` with `matplotlib` is to use `seaborn`'s plot styling.
+104. A simple way to incorporate `seaborn` with `matplotlib` is to use `seaborn`'s plot styling.
 
-86. `matplotlib` also has a few different style sheets based on `seaborn`.
+105. `matplotlib` also has a few different style sheets based on `seaborn`.
 
-87. Let's look at a couple more sophisticated statistical plots built using `seaborn`.
+106. Let's look at a couple more sophisticated statistical plots built using `seaborn`.
 
-88. We can create a plot that highlights the relationship between resturaunt bill amount, tip, and meal time.
+107. We can create a plot that highlights the relationship between resturaunt bill amount, tip, and meal time.
 
-89. This data comes from the `tips` example dataset already packaged in `seaborn`.
+108. This data comes from the `tips` example dataset already packaged in `seaborn`.
 ```Python
 # import seaborn
 import seaborn as sns
@@ -565,13 +693,13 @@ tips = sns.load_dataset("tips")
 sns.relplot(data=tips, x="total_bill", y="tip", col="time", hue="smoker", style="smoker", size="size",)
 ```
 
-90. `seaborn` draws on `matplotlib`, but we don't need to directly load or import `matplotlib`.
+109. `seaborn` draws on `matplotlib`, but we don't need to directly load or import `matplotlib`.
 
-91. We load the `tips` dataset as a `DataFrame`.
+110. We load the `tips` dataset as a `DataFrame`.
 
-92. We then create a visualization that shows the relationships between the five dataset variables through the single call to the `.relplot()` function.
+111. We then create a visualization that shows the relationships between the five dataset variables through the single call to the `.relplot()` function.
 
-93. We can start to think through all of the work happening behind the scenes in `matplotlib` to generate this visualization:
+112. We can start to think through all of the work happening behind the scenes in `matplotlib` to generate this visualization:
 - create figure/axes object with a 2, 1 subplot grid
 - create subplots
 - set tick values and labels for each axis for both subplots
@@ -580,21 +708,22 @@ sns.relplot(data=tips, x="total_bill", y="tip", col="time", hue="smoker", style=
 - set symbol types, color, and size for each type of datapoint, for each subplot
 - generate legend
 
-94. And the list goes on.
+113. And the list goes on.
 
-95. `seaborn` handles all of those translations from the dataframe to `matplotlib` arguments.
+114. `seaborn` handles all of those translations from the dataframe to `matplotlib` arguments.
 
-96. This simplifies the work of writing code to generate this plot.
+115. This simplifies the work of writing code to generate this plot.
 
-97. `seaborn`'s `.relplot()` function is designed to visualize statistical relationships.
+116. `seaborn`'s `.relplot()` function is designed to visualize statistical relationships.
 
-98. Sometimes scatterplots are the most effective way to show these relationships.
+117. Sometimes scatterplots are the most effective way to show these relationships.
 
-99. But, in a relationship where one variable is a measure of time, a line can be a more effective representation.
+118. But, in a relationship where one variable is a measure of time, a line can be a more effective representation.
 
-100. We can use the `kind` parameter with the `.relplot()` function to make this change.
+119. We can use the `kind` parameter with the `.relplot()` function to make this change.
 
-101. An example of `.relplot()` using a different sample dataset.
+120. An example of `.relplot()` using a different sample dataset.
+
 ```Python
 # load sample dataset as dataframe
 dots = sns.load_dataset('dots')
@@ -608,11 +737,11 @@ sns.relplot(
 )
 ```
 
-102. In this example, the `style` parameter impacted line weight and style, rather than marker size as it did in the previous example.
+121. In this example, the `style` parameter impacted line weight and style, rather than marker size as it did in the previous example.
 
-103. A few other `seaborn` examples.
+122. A few other `seaborn` examples.
 
-104. Relationship plot that presents average of one variable as a function of other variables.
+123. Relationship plot that presents average of one variable as a function of other variables.
 ```Python
 fmri = sns.load_dataset("fmri")
 sns.relplot(
@@ -622,47 +751,47 @@ sns.relplot(
 )
 ```
 
-105. `seaborn` estimates the statistical values using bootstrapping to compute confidence intervals and draw error bars to show uncertainty.
+124. `seaborn` estimates the statistical values using bootstrapping to compute confidence intervals and draw error bars to show uncertainty.
 
-106. We could go back to our bill and tip data to generate a scatterplot that includes a linear regression model.
+125. We could go back to our bill and tip data to generate a scatterplot that includes a linear regression model.
 ```Python
 sns.lmplot(data=tips, x="total_bill", y="tip", col="time", hue="smoker")
 ```
 
-107. We can visualize variable distribution with kernel density estimation.
+126. We can visualize variable distribution with kernel density estimation.
 ```Python
 sns.displot(data=tips, x="total_bill", col="time", kde=True)
 ```
 
-108. `seaborn` can also calculate and plot the empirical cumulative distribution function (`ecdf`).
+127. `seaborn` can also calculate and plot the empirical cumulative distribution function (`ecdf`).
 ```Python
 sns.displot(data=tips, kind="ecdf", x="total_bill", col="time", hue="smoker", rug=True)
 ```
 
-109. We can also generate plots that are geared toward categorical data.
+128. We can also generate plots that are geared toward categorical data.
 
 110. A `swarm` plot is a scatterplot with adjusted point positions on the categorical axis to minimize overlap
 ```Python
 sns.catplot(data=tips, kind="swarm", x="day", y="total_bill", hue="smoker")
 ```
 
-111. We could also display this categorical data using kernel density estimation and a violin plot.
+129. We could also display this categorical data using kernel density estimation and a violin plot.
 ```Python
 sns.catplot(data=tips, kind="violin", x="day", y="total_bill", hue="smoker", split=True)
 ```
 
-112. We could also display this data with a grouped bar chart that shows mean values and confidence intervals for each category.
+130. We could also display this data with a grouped bar chart that shows mean values and confidence intervals for each category.
 ```Python
 sns.catplot(data=tips, kind="bar", x="day", y="total_bill", hue="smoker")
 ```
 
-113. This is just a taste of how `seaborn` works to generate more advanced statistical plots.
+131. This is just a taste of how `seaborn` works to generate more advanced statistical plots.
 
-114. Because the package integrates with `matplotlib`, customizing `seaborn` plots requires knowledge of `matplotlib` functionality and syntax.
+132. Because the package integrates with `matplotlib`, customizing `seaborn` plots requires knowledge of `matplotlib` functionality and syntax.
 
-115. Dropping down to the `matplotlib` layer is not always necessary (as shown in these examples), but a robust `matplotlib` foundation is knowledge that transfers when working with `seaborn`.
+133. Dropping down to the `matplotlib` layer is not always necessary (as shown in these examples), but a robust `matplotlib` foundation is knowledge that transfers when working with `seaborn`.
 
-116. For more on `seaborn`:
+134. For more on `seaborn`:
 - [`seaborn`, "seaborn: statistical data visualization"](http://seaborn.pydata.org/)
 - [`seaborn`, "Installing and getting started"](https://seaborn.pydata.org/installing.html)
 - [`seaborn`, "An introduction to seaborn"](http://seaborn.pydata.org/introduction.html)
@@ -671,41 +800,38 @@ sns.catplot(data=tips, kind="bar", x="day", y="total_bill", hue="smoker")
 - [`seaborn`, "API reference"](https://seaborn.pydata.org/api.html)
 - [Jake VanderPlas, "Visualization With Seaborn" from *Python Data Science Handbook*](https://jakevdp.github.io/PythonDataScienceHandbook/04.14-visualization-with-seaborn.html)
 
-<blockquote>Q2: Build at least two different types of plots using seaborn and data stored in a Pandas DataFrame. Include code + comments.
- 
-Each plot should include the following elements:
- <ul>
-  <li>Title</li>
-  <li>Axis labels</li>
-  <li>Legend</li>
-  <li>Scale or tickmarks</li>
-  <li>Data source</li>
- </ul>
+## Lab Notebook Question 2
+
+Q2: Build at least two different types of plots using seaborn and data stored in a Pandas DataFrame. Include code + comments.
+- *I encourage folks to use this question to explore visualizations you might use for the final project.*
+
+For each plot, include the following elements or components:
+- Title
+- Axis labels
+- Legend
+- Scale or tickmarks
+- Data source
  
 Plot types to choose from:
- <ul>
- <li>Line plots</li>
- <li>Bar chart</li>
- <li>Grouped bar chart</li>
- <li>Horizontal bar chart</li>
- <li>Stacked bar chart</li>
- <li>Histogram</li>
- <li>Box plot</li>
- <li>Area plot</li>
- <li>Scatter plot</li>
- <li>Pie chart</li>
- </ul>
- </blockquote>
+- Line plots
+- Bar chart
+- Grouped bar chart
+- Horizontal bar chart
+- Stacked bar chart
+- Histogram
+- Box plot
+- Area plot
+- Scatter plot
+- Pie chart
  
-# Project Prompts
-
-No problem prompts for this lab. Spend this time working on the final project.
-
 # Lab Notebook Questions
 
-Q1: Build at least three different types of plots using matplotlib and data stored in a Pandas DataFrame. Include code + comments. 
+[Link to lab notebook template (Jupyter Notebook)](https://drive.google.com/file/d/1qUT3e8D02oABf6DBjMEm6sb7thhk7wIR/view?usp=sharing)
 
-Each plot should include the following elements:
+Q1: Build at least three different types of plots using matplotlib and data stored in a Pandas DataFrame. Include code + comments. 
+- *I encourage folks to use this question to explore visualizations you might use for the final project.*
+
+For each plot, include the following elements or components:
 - Title
 - Axis labels
 - Legend
@@ -725,8 +851,9 @@ Plot types to choose from:
 - Pie chart
 
 Q2: Build at least two different types of plots using seaborn and data stored in a Pandas DataFrame. Include code + comments.
+- *I encourage folks to use this question to explore visualizations you might use for the final project.*
 
-Each plot should include the following elements:
+For each plot, include the following elements or components:
 - Title
 - Axis labels
 - Legend
