@@ -53,6 +53,47 @@ The author consulted the following resources when writing  this tutorial:
 
 # Data
 
+Most of this lab will work with the `air_quality_no2.csv` dataset:
+- [Download via Google Drive](https://drive.google.com/file/d/1q9np3jZycdHszWODH-MCQ4rfjkcH3g6F/view?usp=sharing)
+
+To load this data in Python:
+
+```Python
+# import pandas
+import pandas as pd
+
+# load data from file
+air_quality = pd.read_csv('air_quality_no2.csv', index_col=0, parse_dates=True)
+```
+
+```Python
+# import pandas
+import pandas as pd
+
+# load data from url
+air_quality = pd.read_csv('https://raw.githubusercontent.com/kwaldenphd/more-with-matplotlib/main/data/air_quality_no2.csv', index_col=0, parse_dates=True)
+```
+
+The mapping section of the lab will use georeferenced data on Notre Dame Football schedules, scraped from College Football Reference.
+- [Download via Google Drive](https://drive.google.com/file/d/1zmEO_iDfGv1ciwTdQf7JKCZaCzx0Bk1C/view?usp=sharing)
+
+To load this data in Python:
+
+```Python
+# import statements
+import pandas as pd
+
+# load data from file
+football = pd.read_csv("nd_football.csv")
+```
+
+```Python
+# import statements
+import pandas as pd
+
+# load data from url
+football = pd.read_csv("https://raw.githubusercontent.com/kwaldenphd/more-with-matplotlib/main/data/nd_football.csv")
+```
 
 # `pandas` and `matplotlib`
 
@@ -76,7 +117,7 @@ The author consulted the following resources when writing  this tutorial:
 import pandas as pd
 
 # load data from url to dataframe
-air_quality = pd.read_csv('https://raw.githubusercontent.com/kwaldenphd/more-with-matplotlib/main/air_quality_no2.csv', index_col=0, parse_dates=True)
+# air_quality = pd.read_csv('https://raw.githubusercontent.com/kwaldenphd/more-with-matplotlib/main/data/air_quality_no2.csv', index_col=0, parse_dates=True)
 
 # check data has loaded
 air_quality.head()
@@ -478,19 +519,17 @@ series.plot.pie(figsize=(6, 6))
 
 84. The data used for these maps is geocoded Notre Dame football schedule information scraped from College Football Reference.
 - [Link to data scraping Jupyter Notebook](https://github.com/kwaldenphd/football-structured-data/blob/main/notebooks/sf-nd-schedules.ipynb)
-- [Link to explore the data](https://github.com/kwaldenphd/football-structured-data/blob/main/data/combined_nd_schedules_cleaned.csv)
+- [Link to explore the data](https://github.com/kwaldenphd/more-with-matplotlib/blob/main/data/nd_football.csv)
+
+85. We can create a scatterplot using the latitude and longitude data.
 
 ```Python
 # import statements
 import pandas as pd
 
 # load data
-football = pd.read_csv("https://raw.githubusercontent.com/kwaldenphd/football-structured-data/main/data/combined_nd_schedules_cleaned.csv")
-```
+# football = pd.read_csv("https://raw.githubusercontent.com/kwaldenphd/more-with-matplotlib/main/data/nd_football.csv")
 
-85. We can create a scatterplot using the latitude and longitude data.
-
-```Python
 # scatterplot of latitude and longitude data
 football.plot(x= "Longitude", y="Latitude", kind='scatter')
 ```
