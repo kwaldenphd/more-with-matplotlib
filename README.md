@@ -339,9 +339,6 @@ df = pd.DataFrame(np.random.randn(1000, 4), index=ts.index, columns=list("ABCD")
 # calculate cumulative sum
 df = df.cumsum()
 
-# create figure
-plt.figure()
-
 # create plot
 df.plot()
 ```
