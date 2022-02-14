@@ -173,9 +173,6 @@ import matplotlib.pyplot as plt
 
 # generate plot
 air_quality.plot()
-
-# show plot
-plt.show()
 ```
 
 9. This isn't a particularly meaningful visualization, but it shows us how the default for `.plot()` creates a line for each column with numeric data.
@@ -355,14 +352,8 @@ df.plot()
 46. We can select a specific row using `iloc`.
 
 ```Python
-# create figure
-plt.figure()
-
 # create bar plot for single row of data
 df.iloc[5].plot.bar()
-
-# show plot
-plt.show()
 ```
 
 #### Grouped Bar Charts
@@ -387,13 +378,16 @@ df2.plot.bar()
 
 51. If we wanted to show this data as a stacked bar chart, we would set the `stacked` parameter to `True`.
 ```Python
+# stacked bar chart
 df2.plot.bar(stacked=True)
 ```
 
 #### Horizontal Bar Charts
 
 52. Remember `.plot.barh()` generates a horizontal bar chart, and we can also set `stacked` to `True` here to create a horizontal stacked bar chart.
+
 ```Python
+# horizontal bar chart
 df2.plot.barh(stacked=True)
 ```
 
@@ -413,21 +407,20 @@ df2.plot.barh(stacked=True)
 # create dataframe with three columns using dictionary with random number data
 df = pd.DataFrame({"a": np.random.randn(1000) + 1, "b": np.random.randn(1000), "c": np.random.randn(1000) - 1,}, columns=["a", "b", "c"],)
 
-# create figure object
-plt.figure()
-
 # create histogram
-df4.plot.hist(alpha=0.5)
+df.plot.hist(alpha=0.5)
 ```
 
 56. We can set `stacked` to `True` to create a stacked histogram.
 ```Python
-df4.hist(stacked=True)
+# stacked histogram
+df.hist(stacked=True)
 ```
 
 57. We can also specify the bin size using the `bins` keyword.
 ```Python
-df4.plot.hist(bins=20)
+# modified bin number/size
+df.plot.hist(bins=20)
 ```
 
 58. We can use the `.hist()` method in `matplotlib` to further customize our histogram: [`matplotlib.axes.Axes.hist`](https://matplotlib.org/api/_as_gen/matplotlib.axes.Axes.hist.html#matplotlib.axes.Axes.hist)
@@ -455,6 +448,7 @@ df.plot.box()
 
 63. We can add colors to our box plot using the `color` keyword.
 ```Python
+# set box color
 df.plot.box(color='blue')
 ```
 
@@ -476,8 +470,10 @@ df.plot.box(color=color, sym="r+")
 
 66. Basic syntax:
 ```Python
+# create dataframe
 df = pd.DataFrame(np.random.rand(10, 4), columns=["a", "b", "c", "d"])
 
+# generate area plot
 df.plot.area()
 ```
 
@@ -490,8 +486,10 @@ df.plot.area()
 
 68. Basic syntax:
 ```Python
+# create dataframe
 df = pd.DataFrame(np.random.rand(50, 4), columns=["a", "b", "c", "d"])
 
+# generate scatter plot
 df.plot.scatter(x="a", y="b")
 ```
 
@@ -504,12 +502,23 @@ df.plot.scatter(x="a", y="b")
 
 70. Basic syntax:
 ```Python
+# create series array
 series = pd.Series(3 * np.random.rand(4), index=["a", "b", "c", "d"], name="series")
 
+# generate pie chart
 series.plot.pie(figsize=(6, 6))
 ```
 
-71. For more on pie plots:
+71. We can also generate a pie chart from data stored in a `DataFrame` by using subplots for each column.
+
+```Python
+# create data frame
+df = pd.DataFrame(3 * np.random.rand(4, 2), index=["a", "b", "c", "d"], columns=["x", "y"])
+
+# generate side by side plots
+df.plot.pie(subplots=True, figsize=(8, 4))
+```
+For more on pie plots:
 - [`pandas`, "Visualization, Pie Plot"](https://pandas.pydata.org/docs/user_guide/visualization.html#pie-plot)
 - [`pandas.DataFrame.plot.pie`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.plot.pie.html#pandas.DataFrame.plot.pie)
 
@@ -566,6 +575,7 @@ series.plot.pie(figsize=(6, 6))
 ```Python
 # import statements
 import pandas as pd
+import geopandas as gpd
 
 # load data
 # football = pd.read_csv("https://raw.githubusercontent.com/kwaldenphd/more-with-matplotlib/main/data/nd_football.csv")
