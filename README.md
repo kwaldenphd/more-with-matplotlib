@@ -773,6 +773,9 @@ sns.set_theme()
 # load dataset already stored as dataframe
 tips = sns.load_dataset("tips")
 
+# show tips df
+# tips
+
 # create plot
 sns.relplot(data=tips, x="total_bill", y="tip", col="time", hue="smoker", style="smoker", size="size",)
 ```
@@ -812,6 +815,9 @@ sns.relplot(data=tips, x="total_bill", y="tip", col="time", hue="smoker", style=
 # load sample dataset as dataframe
 dots = sns.load_dataset('dots')
 
+# show df
+# dots
+
 # creat line plot showing relationships
 sns.relplot(
     data=dots, kind="line",
@@ -827,7 +833,13 @@ sns.relplot(
 
 123. Relationship plot that presents average of one variable as a function of other variables.
 ```Python
+# load fmri data
 fmri = sns.load_dataset("fmri")
+
+# show df
+# fmri
+
+# generate plot
 sns.relplot(
     data=fmri, kind="line",
     x="timepoint", y="signal", col="region",
@@ -839,16 +851,19 @@ sns.relplot(
 
 125. We could go back to our bill and tip data to generate a scatterplot that includes a linear regression model.
 ```Python
+# linear model plot
 sns.lmplot(data=tips, x="total_bill", y="tip", col="time", hue="smoker")
 ```
 
 126. We can visualize variable distribution with kernel density estimation.
 ```Python
+# distribution plot with kernel density estimation
 sns.displot(data=tips, x="total_bill", col="time", kde=True)
 ```
 
 127. `seaborn` can also calculate and plot the empirical cumulative distribution function (`ecdf`).
 ```Python
+# distribution plot with empirical cumulative distribution function
 sns.displot(data=tips, kind="ecdf", x="total_bill", col="time", hue="smoker", rug=True)
 ```
 
@@ -856,16 +871,19 @@ sns.displot(data=tips, kind="ecdf", x="total_bill", col="time", hue="smoker", ru
 
 110. A `swarm` plot is a scatterplot with adjusted point positions on the categorical axis to minimize overlap
 ```Python
+# categorical swarm plot
 sns.catplot(data=tips, kind="swarm", x="day", y="total_bill", hue="smoker")
 ```
 
 129. We could also display this categorical data using kernel density estimation and a violin plot.
 ```Python
+# categorical violin plot
 sns.catplot(data=tips, kind="violin", x="day", y="total_bill", hue="smoker", split=True)
 ```
 
 130. We could also display this data with a grouped bar chart that shows mean values and confidence intervals for each category.
 ```Python
+# categorical bar plot
 sns.catplot(data=tips, kind="bar", x="day", y="total_bill", hue="smoker")
 ```
 
@@ -899,14 +917,24 @@ For each plot, include the following elements or components:
 Plot types to choose from:
 - Line plots
 - Bar chart
-- Grouped bar chart
-- Horizontal bar chart
-- Stacked bar chart
 - Histogram
 - Box plot
 - Area plot
 - Scatter plot
-- Pie chart
+
+Remember in `seaborn` our way into these discrete plot types if via a few overarching functions based on what aspects of the data we want to highlight:
+- `sns.replot()`
+  * Shows relationships
+  * Can be a scatterplot or line plot 
+- `sns.lmplot()`
+  * Visualizes linear models
+  * Can include a combination of line plots and scatter plots
+- `sns.displot()`
+  * Shows value distribution
+  *  Can include histograms or bar charts
+- `sns.catplot()`
+  * Shows category dimensions
+  * Can include bar charts, box plots, violin plots 
 
 # Additional Resources for Statistical Analysis and Machine Learning
 
@@ -962,11 +990,21 @@ For each plot, include the following elements or components:
 Plot types to choose from:
 - Line plots
 - Bar chart
-- Grouped bar chart
-- Horizontal bar chart
-- Stacked bar chart
 - Histogram
 - Box plot
 - Area plot
 - Scatter plot
-- Pie chart
+
+Remember in `seaborn` our way into these discrete plot types if via a few overarching functions based on what aspects of the data we want to highlight:
+- `sns.replot()`
+  * Shows relationships
+  * Can be a scatterplot or line plot 
+- `sns.lmplot()`
+  * Visualizes linear models
+  * Can include a combination of line plots and scatter plots
+- `sns.displot()`
+  * Shows value distribution
+  *  Can include histograms or bar charts
+- `sns.catplot()`
+  * Shows category dimensions
+  * Can include bar charts, box plots, violin plots 
