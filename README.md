@@ -661,6 +661,7 @@ Plot types to choose from:
 - Area plot
 - Scatter plot
 - Pie chart
+- Map
 
 ## `.plot()` and Missing Data
 
@@ -946,6 +947,7 @@ Plot types to choose from:
 - Area plot
 - Scatter plot
 - Pie chart
+- Map
 
 Q2: Build at least two different types of plots using seaborn and data stored in a Pandas DataFrame. Include code + comments.
 - *I encourage folks to use this question to explore visualizations you might use for the final project.*
