@@ -704,9 +704,11 @@ Pie | Fills 0s
 
 99. `seaborn` works with `numpy`, `scipy`, `pandas`, and `matplotlib` to simply high-level functions for common statistical plots.
 
-100. Let's compare `seaborn` and `matplotlib` using random walk data and a line plot.
+100. To install `seaborn` (run in the terminal):
+  * `pip install seaborn`
+  * `conda install seaborn`
 
-101. Sample line plot generated using only `matplotlib`:
+101. Let's compare `seaborn` and `matplotlib` using random walk data and a line plot. Code for a sample line plot generated using only `matplotlib`:
 ```Python
 # import necessary packages
 import matplotlib.pyplot as plt
