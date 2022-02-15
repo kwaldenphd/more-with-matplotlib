@@ -588,10 +588,10 @@ football.plot(x= "Longitude", y="Latitude", kind='scatter')
 
 ```Python
 # show available geopandas datasets (for basemaps)
-geopandas.datasets.available
+gpd.datasets.available
 
 # world basemap from naturalearth_lowres geopandas dataset
-world = gpd.read_file(geopandas.datasets.get_path("naturalearth_lowres"))
+world = gpd.read_file(gpd.datasets.get_path("naturalearth_lowres"))
 
 # show basemap head
 world.head()
@@ -600,27 +600,21 @@ world.head()
 87. In order to create a map from the football data, we would need to create a point field from the latitude/longitude data.
 
 ```Python
-# function that takes latitude and longitude columns from dataframe and creates Point field
-def make_point(row):
-    return Point(row.Longitude, row.Latitude)
-
-points = football.apply(make_point, axis=1)
-
-# create GeoDataFrame from football data and points geometry
-football_map = gpd.GeoDataFrame(football, geometry=points)
+# create pandas geodataframe
+gds = gpd.GeoDataFrame(football, geometry=gpd.points_from_xy(football.Longitude, football.Latitude))
 
 # set GeoDataFrame coordinate system
-football_map.crs = {'init': 'epsg:4326'}
+gds.crs = {'init': 'epsg:4326'}
 
 # show head of GeoDataFrame
-football_map.head()
+gds.head()
 ```
 
 88. Then, we could generate a preliminary Cartesian Coordinate plot of the GeoDataFrame.
 
 ```Python
 # preliminary cartesian coordinate plot of GeoDataFrame
-football_map.plot(figsize=(20,5))
+gds.plot(figsize=(20,5))
 ```
 
 89. From that point, we can add a basemap layer to create a static 2D map.
@@ -636,7 +630,7 @@ ax.set_title("Geography of Notre Dame Football")
 ax.axis('off')
 
 # plot football data with points colored by season
-football_map.plot(markersize=10, column="Season", cmap='viridis', alpha=0.5, ax=ax, legend=True)
+gds.plot(markersize=10, column="Season", cmap='viridis', alpha=0.5, ax=ax, legend=True)
 ```
 
 90. Additional `GeoPandas` resources:
