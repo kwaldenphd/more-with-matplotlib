@@ -950,6 +950,9 @@ Remember in `seaborn` our way into these discrete plot types if via a few overar
 139. `scikit-learn` incorporates/is built on `matplotlib` and has robust support for plotting and visualization.
 - [Scikit-learn documentation](https://scikit-learn.org/stable/)
 
+140. For a more holistic introduction to machine learning concept and workflows in Python:
+  * [Prof. Walden's "Getting Started With Machine Learning in Python lab](https://github.com/kwaldenphd/machine-learning-intro/blob/main/ml-python-intro.md#machine-learning-libraries) 
+
 # Lab Notebook Questions
 
 [Link to lab notebook template (Jupyter Notebook)](https://drive.google.com/file/d/1qUT3e8D02oABf6DBjMEm6sb7thhk7wIR/view?usp=sharing)
