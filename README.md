@@ -1,7 +1,6 @@
 # More With `matplotlib`
 
-<a href="http://creativecommons.org/licenses/by-nc/4.0/" rel="license"><img style="border-width: 0;" src="https://i.creativecommons.org/l/by-nc/4.0/88x31.png" alt="Creative Commons License" /></a>
-This tutorial is licensed under a <a href="http://creativecommons.org/licenses/by-nc/4.0/" rel="license">Creative Commons Attribution-NonCommercial 4.0 International License</a>.
+<a href="http://creativecommons.org/licenses/by-nc/4.0/" rel="license"><img style="border-width: 0;" src="https://i.creativecommons.org/l/by-nc/4.0/88x31.png" alt="Creative Commons License" /></a>This tutorial was written by Katherine Walden and is licensed under a <a href="http://creativecommons.org/licenses/by-nc/4.0/" rel="license">Creative Commons Attribution-NonCommercial 4.0 International License</a>.
 
 ## Lab Goals
 
@@ -11,6 +10,13 @@ By the end of this lab, students will be able to:
 - Understand how to generate `matplotlib` plots for data stored in a `pandas` `DataFrame`, for a variety of plot types
 - Understand how to navigate the `pandas` documentation to troubleshoot and further explore `pandas`'s plotting functions
 - Understand the basic distinctions and relationship between `matplotlib` and `seaborn`
+
+<table>
+ <tr><td>
+<img src="https://elearn.southampton.ac.uk/wp-content/blogs.dir/sites/64/2021/04/PanPan.png" alt="Panopto logo" width="50"/></td>
+<td><a href="https://notredame.hosted.panopto.com/Panopto/Pages/Viewer.aspx?pid=80085ef5-e5ec-44a1-ac44-ae31012ed0ae">Lecture/live coding playlist</a></td>
+  </tr>
+  </table>
 
 ## Acknowledgements
 
@@ -24,6 +30,7 @@ The author consulted the following resources when writing  this tutorial:
 
 # Table of Contents
 
+- [Lecture & Live Coding](#lecture--live-coding)
 - [Lab notebook template](#lab-notebook-template)
 - [Data](#data)
 - [Setup and Environment](#setup-and-environment)
@@ -48,6 +55,23 @@ The author consulted the following resources when writing  this tutorial:
 - [Lab Notebook Questions](#lab-notebook-questions)
 
 [Link to lab procedure as a Jupyter Notebook](https://drive.google.com/file/d/1tq9fJX9oX_5cL1stEHRpMMmoNL573f9_/view?usp=sharing)
+
+# Lecture & Live Coding
+
+Throughout this lab, you will see a Panopto icon at the start of select sections.
+
+This icon indicates there is lecture/live coding asynchronous content that accompanies this section of the lab. 
+
+You can click the link in the figure caption to access these materials (ND users only).
+
+Example:
+
+<table>
+ <tr><td>
+<img src="https://elearn.southampton.ac.uk/wp-content/blogs.dir/sites/64/2021/04/PanPan.png" alt="Panopto logo" width="50"/></td>
+<td><a href="https://notredame.hosted.panopto.com/Panopto/Pages/Viewer.aspx?pid=80085ef5-e5ec-44a1-ac44-ae31012ed0ae">Lecture/live coding playlist</a></td>
+  </tr>
+  </table>
 
 # Lab Notebook Template
 
@@ -140,21 +164,13 @@ There are also Python libraries that support geocoding.
 
 # `pandas` and `matplotlib`
 
-1. Having to load data manually to build a visualization or plot gets cumbersome quickly.
+Having to load data manually to build a visualization or plot gets cumbersome quickly. In many situations, we might want to work with data in a `pandas` `DataFrame` when building a visualization.
 
-2. In many situations, we might want to work with data in a `pandas` `DataFrame` when building a visualization.
-
-3. `pandas` includes a `.plot()` attribute that interacts with the `matplotlib` API to generate plots.
-
-4. The `pandas` `.plot()` attribute relies on the `matplotlib` API to generate plots, so our work with `matplotlib` will come in handy when we need to customize plots generated using `.plot()`.
-
-5. And in many cases, the `.plot()` syntax is similar to `matplotlib` `OO` syntax.
+`pandas` includes a `.plot()` attribute that interacts with the `matplotlib` API to generate plots. The `pandas` `.plot()` attribute relies on the `matplotlib` API to generate plots, so our work with `matplotlib` will come in handy when we need to customize plots generated using `.plot()`. And in many cases, the `.plot()` syntax is similar to `matplotlib` `OO` syntax.
 
 ## Plotting in `pandas` Using `.plot()`
 
-6. Let's go back to the air quality data we were working with previously in `pandas`.
-
-7. To load the data as a dataframe:
+Let's go back to the air quality data we were working with previously in `pandas`. To load the data as a dataframe:
 ```Python
 # import pandas
 import pandas as pd
@@ -166,7 +182,7 @@ import pandas as pd
 air_quality.head()
 ```
 
-8. We can do a quick visual check of the data by passing the entire data frame to `.plot()`.
+We can do a quick visual check of the data by passing the entire data frame to `.plot()`.
 ```Python
 # import matplotlib
 import matplotlib.pyplot as plt
@@ -175,40 +191,26 @@ import matplotlib.pyplot as plt
 air_quality.plot()
 ```
 
-9. This isn't a particularly meaningful visualization, but it shows us how the default for `.plot()` creates a line for each column with numeric data.
+This isn't a particularly meaningful visualization, but it shows us how the default for `.plot()` creates a line for each column with numeric data.
+- The index is used for the `X` axis, and all numeric columns are plotted on the `Y` axis.
+- We can also see that `.plot()` pulls tick marks, tick labels, and axis titles from the underlying `dataframe`.
 
-10. The index is used for the `X` axis, and all numeric columns are plotted on the `Y` axis.
-
-11. We can also see that `.plot()` pulls tick marks, tick labels, and axis titles from the underlying `dataframe`.
-
-12. Let's say we only wanted to plot Paris data.
-
-13. We can select that column in the `dataframe` before calling `.plot()`.
+Let's say we only wanted to plot Paris data. We can plot a specific column in the `dataframe` using the `[" "]` selection method before calling `.plot()`.
 ```Python
 air_quality["station_paris"].plot()
 ```
 
-14. We can plot a specific column in the `dataframe` using the `[" "]` selection method.
+Let's say we want to visually compare NO<sub>2</sub> values measured in London and Paris. We need to specify what column is going to be used for the `X` axis as well as what column is going to be used for the `Y` axis.
 
-15. Let's say we want to visually compare NO<sub>2</sub> values measured in London and Paris.
-
-16. We need to specify what column is going to be used for the `X` axis as well as what column is going to be used for the `Y` axis.
-
-17. For this example, a scatterplot will be more effective than a lineplot.
-
-18. We can create a scatterplot using `.plot.scatter()`.
+For this example, a scatterplot will be more effective than a lineplot, so we'll use `.plot.scatter()`.
 
 ```Python
 air_quality.plot.scatter(x="station_london", y="station_paris", alpha=0.5)
 ```
 
-19. This example generates a scatterplot with London data on the `X` axis and Paris data on the `Y` axis.
+While the default for `.plot()` is a lineplot, there are a number of other methods we can use with `.plot()`. Again, you will see some overlap with `matplotlib` syntax.
 
-20. While the default for `.plot()` is a lineplot, there are a number of other methods we can use with `.plot()`.
-
-21. Again, you will see some overlap with `matplotlib` syntax.
-
-22. We can use these strings as as method in combination with `.plot()` or we can pass them to `.plot()` as a `kind` parameter.
+We can use these strings as as method in combination with `.plot()` or we can pass them to `.plot()` as a `kind` parameter.
 
 Plot Type | Method Syntax | Parameter Syntax
 --- | --- | ---
@@ -225,26 +227,20 @@ Line | `.plot.line()` | `.plot(kind='line')` *this would be redundant since the 
 Pie | `.plot.pie()` | `.plot(kind='pie')`
 Scatter | `.plot.scatter()` | `.plot(kind='scatter')`
 
-23. In general, it's more effective to use the method syntax to note plot type, rather than treating plot type as a parameter.
+In general, it's more effective to use the method syntax to note plot type, rather than treating plot type as a parameter.
 
-24. Let's create a box plot using our air quality data.
+Let's create a box plot using our air quality data. In this example, each numeric column has its own box in the plot.
 ```Python
 air_quality.plot.box()
 ```
 
-25. We can see each numeric column (each station) has its own box in the default boxplot.
-
-26. Let's say we wanted to generate a lineplot with separate subplots for each of the numeric columns.
-
-27. We can accomplish this by setting the `subplots` parameter to `True`.
+Let's say we wanted to generate a lineplot with separate subplots for each of the numeric columns. We can accomplish this by setting the `subplots` parameter to `True`.
 
 ```Python
 axs = air_quality.plot.area(figsize=(12, 4), subplots=True)
 ```
 
-28. Let's say we want to further customize this plot.
-
-29. This is where we start to see more `matplotlib` syntax in play.
+Let's say we want to further customize this plot. This is where we start to see more `matplotlib` syntax in play.
 
 ```Python
 # create figure and axes
@@ -260,15 +256,11 @@ axs.set_ylabel("NO$_2$ concentration")
 fig.savefig("no2_concentrations.png")
 ```
 
-30. Each plot object created by `pandas` is also a `matplotlib` object.
+Each plot object created by `pandas` is also a `matplotlib` object. Having a deep knowledge of `matplotlib` allows you to customize plots generated using `pandas` `.plot()` function.
 
-31. Having a deep knowledge of `matplotlib` allows you to customize plots generated using `pandas` `.plot()` function.
+That said, there are some parameters you can set as part of `.plot()` without having to have separate `matplotlib` syntax commands. The plot `kind` is one parameter option, as is the `dataframe`, `X` axis data, and `Y` axis data.
 
-32. That said, there are some parameters you can set as part of `.plot()` without having to have separate `matplotlib` syntax commands.
-
-33. The plot `kind` is one parameter option, as is the `dataframe`, `X` axis data, and `Y` axis data.
-
-34. Other parameters:
+Other parameters:
 
 Parameter | Explanation
 --- | ---
@@ -291,9 +283,9 @@ Parameter | Explanation
 `table` | Default is `False`; set to `True` to draw a table from data in the `DataFrame`
 `stacked` | Default is `False` in line and bar plots, `True` in area plot; if `True`, creates stacked plot
 
-35. For more parameters that can be passed to `.plot()`: [`pandas.DataFrame.plot`](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.plot.html)
+For more parameters that can be passed to `.plot()`: [`pandas.DataFrame.plot`](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.plot.html)
 
-36. Let's walk through a few more examples of using `.plot()` with a `pandas` `DataFrame`.
+Let's walk through a few more examples of using `.plot()` with a `pandas` `DataFrame`.
 
 37. NOTE: The `.plot()` method can be used on `pandas` `Series` and `DataFrame`. These examples focus on `DataFrame`s.
 
