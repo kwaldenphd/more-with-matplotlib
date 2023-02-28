@@ -14,7 +14,7 @@ By the end of this lab, students will be able to:
 <table>
  <tr><td>
 <img src="https://elearn.southampton.ac.uk/wp-content/blogs.dir/sites/64/2021/04/PanPan.png" alt="Panopto logo" width="50"/></td>
-<td><a href="https://notredame.hosted.panopto.com/Panopto/Pages/Viewer.aspx?pid=80085ef5-e5ec-44a1-ac44-ae31012ed0ae">Lecture/live coding playlist</a></td>
+<td><a href="https://notredame.hosted.panopto.com/Panopto/Pages/Viewer.aspx?pid=78a3cc11-5efd-44b2-bb14-ae3e0185843a">Lecture/live coding playlist</a></td>
   </tr>
   </table>
 
@@ -69,7 +69,14 @@ Example:
 <table>
  <tr><td>
 <img src="https://elearn.southampton.ac.uk/wp-content/blogs.dir/sites/64/2021/04/PanPan.png" alt="Panopto logo" width="50"/></td>
-<td><a href="https://notredame.hosted.panopto.com/Panopto/Pages/Viewer.aspx?pid=80085ef5-e5ec-44a1-ac44-ae31012ed0ae">Lecture/live coding playlist</a></td>
+<td><a href="https://notredame.hosted.panopto.com/Panopto/Pages/Viewer.aspx?pid=78a3cc11-5efd-44b2-bb14-ae3e0185843a">Lecture/live coding playlist</a></td>
+  </tr>
+  </table>
+
+<table>
+ <tr><td>
+<img src="https://elearn.southampton.ac.uk/wp-content/blogs.dir/sites/64/2021/04/PanPan.png" alt="Panopto logo" width="50"/></td>
+<td><a href="https://notredame.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=e3e2fa87-9d6f-4fbf-903b-ae3c017cb3c9">Overview</a></td>
   </tr>
   </table>
 
@@ -169,6 +176,13 @@ Having to load data manually to build a visualization or plot gets cumbersome qu
 `pandas` includes a `.plot()` attribute that interacts with the `matplotlib` API to generate plots. The `pandas` `.plot()` attribute relies on the `matplotlib` API to generate plots, so our work with `matplotlib` will come in handy when we need to customize plots generated using `.plot()`. And in many cases, the `.plot()` syntax is similar to `matplotlib` `OO` syntax.
 
 ## Plotting in `pandas` Using `.plot()`
+
+<table>
+ <tr><td>
+<img src="https://elearn.southampton.ac.uk/wp-content/blogs.dir/sites/64/2021/04/PanPan.png" alt="Panopto logo" width="50"/></td>
+<td><a href="https://notredame.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=5240d7f0-19d3-42f9-a256-ae3c017f495e">Plotting in Pandas</a></td>
+  </tr>
+  </table>
 
 Let's go back to the air quality data we were working with previously in `pandas`. To load the data as a dataframe:
 ```Python
@@ -290,6 +304,13 @@ Let's walk through a few more examples of using `.plot()` with a `pandas` `DataF
 
 ### Time Series Data and Line Plots
 
+<table>
+ <tr><td>
+<img src="https://elearn.southampton.ac.uk/wp-content/blogs.dir/sites/64/2021/04/PanPan.png" alt="Panopto logo" width="50"/></td>
+<td><a href="https://notredame.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=3c58ea94-61f0-4649-b076-ae3c0183ba31">Time Series Data & Line Plots</a></td>
+  </tr>
+  </table>
+
 Let's generate some random time series data.
 ```Python
 # import pandas
@@ -332,6 +353,13 @@ For more on line plots:
 - [`pandas.DataFrame.plot.line`](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.plot.line.html)
 
 ### Bar Charts
+
+<table>
+ <tr><td>
+<img src="https://elearn.southampton.ac.uk/wp-content/blogs.dir/sites/64/2021/04/PanPan.png" alt="Panopto logo" width="50"/></td>
+<td><a href="https://notredame.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=055df164-0bcc-4920-b9ba-ae3c0185675f">Other Types of Plots</a></td>
+  </tr>
+  </table>
 
 Let's say we want to create a bar chart with a single line of data from our `df` `DataFrame`. We can select a specific row using `iloc`.
 
@@ -498,6 +526,13 @@ For more on pie plots:
 
 ### Mapping
 
+<table>
+ <tr><td>
+<img src="https://elearn.southampton.ac.uk/wp-content/blogs.dir/sites/64/2021/04/PanPan.png" alt="Panopto logo" width="50"/></td>
+<td><a href="https://notredame.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=7d51bd95-3812-47d7-b837-ae3d00046d25">Mapping</a></td>
+  </tr>
+  </table>
+
 Up to this point, we have been working with data plotted on a 2D cartesian coordinate system, with x and y axes. For our purposes, it's most useful to think of maps in the same way--as data plotted on a coordinate system. Except for maps, that coordinate system is typically some type of latitude or longitude based projection, and the data to be plotted includes explicit location information (rather than a numerical or categorical field that can be mapped to an axis).
 
 We can use `GeoPandas` (a library based on `Pandas` that is geared toward geospatial data) in combination with `Shapely` and `Matplotlib` to generate static maps in Python.
@@ -602,6 +637,13 @@ Additional `GeoPandas` resources:
 
 ## Lab Notebook Question 1
 
+<table>
+ <tr><td>
+<img src="https://elearn.southampton.ac.uk/wp-content/blogs.dir/sites/64/2021/04/PanPan.png" alt="Panopto logo" width="50"/></td>
+<td><a href="https://notredame.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=d6e56093-7594-428a-91fd-ae3d00076c3a">Lab Notebook Question 1</a></td>
+  </tr>
+  </table>
+
 Q1: Build at least three different types of plots using matplotlib and data stored in a Pandas DataFrame. Include code + comments. 
 - *I encourage folks to use this question to explore visualizations you might use for the final project.*
 
@@ -626,6 +668,13 @@ Plot types to choose from:
 - Map
 
 ## `.plot()` and Missing Data
+
+<table>
+ <tr><td>
+<img src="https://elearn.southampton.ac.uk/wp-content/blogs.dir/sites/64/2021/04/PanPan.png" alt="Panopto logo" width="50"/></td>
+<td><a href="https://notredame.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=9ba615b5-d66d-468a-8f50-ae3d0008613e">Missing Data</a></td>
+  </tr>
+  </table>
 
 Just like `pandas` has built-in settings for handling missing data or `NaN` values, the `.plot()` method also has default settings for how each type of plot handles missing data.
 
@@ -653,6 +702,13 @@ For more on plotting with `pandas` and `matplotlib`:
 - [`pandas`, "Plotting directly with matplotlib"](https://pandas.pydata.org/docs/user_guide/visualization.html#plotting-directly-with-matplotlib)
 
 # Working with `pandas` and `seaborn`
+
+<table>
+ <tr><td>
+<img src="https://elearn.southampton.ac.uk/wp-content/blogs.dir/sites/64/2021/04/PanPan.png" alt="Panopto logo" width="50"/></td>
+<td><a href="https://notredame.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=4cacc4bb-2ba7-4d60-b85c-ae3d00099180">Pandas & Seaborn</a></td>
+  </tr>
+  </table>
 
 As we've covered previously, `matplotlib` gives you a wide range of base components to work with when generating plots. But, `matplotlib` does have limitations, and building a plot from the ground up, specifying each component can be cumbersome (and result in significant boilerplate code). Advanced statistical analysis with `matplotlib` is possible, but cumbersome. 
 
@@ -864,6 +920,13 @@ Remember in `seaborn` our way into these discrete plot types if via a few overar
   * Can include bar charts, box plots, violin plots 
 
 # Additional Resources for Statistical Analysis and Machine Learning
+
+<table>
+ <tr><td>
+<img src="https://elearn.southampton.ac.uk/wp-content/blogs.dir/sites/64/2021/04/PanPan.png" alt="Panopto logo" width="50"/></td>
+<td><a href="https://notredame.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=ec06586c-a809-45c1-833b-ae3d00119a58">Additional Resources for Statistical Analysis & Machine Learning</a></td>
+  </tr>
+  </table>
 
 With the exception of some of the `Seaborn` plot types explored at the end of the lab, most of the plots focus on methods for plotting summary statistics. Python can support a wide variety of statistical analysis methods and modelling techniques.
 
