@@ -470,7 +470,7 @@ For more on box plots:
 
 ### Area Plots
 
-BBasic syntax:
+Basic syntax:
 ```Python
 # create dataframe
 df = pd.DataFrame(np.random.rand(10, 4), columns=["a", "b", "c", "d"])
